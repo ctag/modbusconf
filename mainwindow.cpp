@@ -98,4 +98,18 @@ void MainWindow::do_displayDeviceSettings()
     ui->lineEdit_deviceName->setText(dev.name);
     ui->comboBox_deviceProtocol->setCurrentText(dev.protocol);
     ui->spinBox_deviceSlaveID->setValue(dev.slave_id);
+    ui->lineEdit_deviceAddress->setText(dev.address);
+    ui->spinBox_deviceIpPort->setValue(dev.IP_port);
+    ui->spinBox_deviceRtuBaudRate->setValue(dev.RTU_Baud_Rate);
+    ui->comboBox_deviceRtuParity->setCurrentText(dev.RTU_Parity);
+    ui->spinBox_deviceRtuDataBits->setValue(dev.RTU_Data_Bits);
+    ui->spinBox_deviceRtuStopBits->setValue(dev.RTU_Stop_Bits);
+    ui->spinBox_deviceDiscreteInputsStart->setValue(dev.Discrete_Inputs_Start);
+    ui->spinBox_deviceDiscreteInputsSize->setValue(dev.Discrete_Inputs_Size);
+    ui->spinBox_deviceCoilsStart->setValue(dev.Coils_Start);
+    ui->spinBox_deviceCoilsSize->setValue(dev.Coils_Size);
+    ui->spinBox_deviceInputRegistersStart->setValue(dev.Input_Registers_Start);
+    ui->spinBox_deviceInputRegistersSize->setValue(dev.Input_Registers_Size);
+    ui->spinBox_deviceHoldingRegistersStart->setValue(dev.Holding_Registers_Start);
+    ui->spinBox_deviceHoldingRegistersSize->setValue(dev.Holding_Registers_Size);
 }
