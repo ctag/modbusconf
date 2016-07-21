@@ -12,11 +12,11 @@ struct mbDevice {
     QString address;
     int IP_port;
     int RTU_Baud_Rate;
-    int RTU_Parity;
+    QChar RTU_Parity;
     int RTU_Data_Bits;
     int RTU_Stop_Bits;
     int Discrete_Inputs_Start;
-    int Descrete_Inputs_Size;
+    int Discrete_Inputs_Size;
     int Coils_Start;
     int Coils_Size;
     int Input_Registers_Start;
@@ -40,6 +40,9 @@ public:
 public slots:
     void do_updateNumDevices();
     void do_updateProtocol();
+
+protected:
+    void deviceInstantiate(mbDevice * device, int index);
 
 private:
     Ui::MainWindow *ui;

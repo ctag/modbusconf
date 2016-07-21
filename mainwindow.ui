@@ -81,147 +81,90 @@
              <item row="1" column="1">
               <widget class="QSpinBox" name="spinBox_deviceSlaveID"/>
              </item>
-             <item row="4" column="0">
+             <item row="2" column="0">
               <widget class="QLabel" name="label_12">
                <property name="text">
                 <string>Discrete Inputs Start</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceDiscreteInputsStart"/>
+             </item>
+             <item row="3" column="0">
               <widget class="QLabel" name="label_13">
                <property name="text">
                 <string>Discrete Inputs Size</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceDiscreteInputsSize"/>
+             </item>
+             <item row="4" column="0">
               <widget class="QLabel" name="label_14">
                <property name="text">
                 <string>Coils Start</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="0">
+             <item row="4" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceCoilsStart"/>
+             </item>
+             <item row="5" column="0">
               <widget class="QLabel" name="label_15">
                <property name="text">
                 <string>Coils Size</string>
                </property>
               </widget>
              </item>
-             <item row="8" column="0">
+             <item row="5" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceCoilsSize"/>
+             </item>
+             <item row="6" column="0">
               <widget class="QLabel" name="label_16">
                <property name="text">
                 <string>Input Registers Start</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
+             <item row="6" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceInputRegistersStart"/>
+             </item>
+             <item row="7" column="0">
               <widget class="QLabel" name="label_17">
                <property name="text">
                 <string>Input Registers Size</string>
                </property>
               </widget>
              </item>
-             <item row="10" column="0">
+             <item row="7" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceInputRegistersSize"/>
+             </item>
+             <item row="8" column="0">
               <widget class="QLabel" name="label_18">
                <property name="text">
                 <string>Holding Registers Start</string>
                </property>
               </widget>
              </item>
-             <item row="11" column="0">
+             <item row="8" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceHoldingRegistersStart"/>
+             </item>
+             <item row="9" column="0">
               <widget class="QLabel" name="label_19">
                <property name="text">
                 <string>Holding Registers Size</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceDiscreteInputsStart"/>
-             </item>
-             <item row="5" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceDiscreteInputsSize"/>
-             </item>
-             <item row="6" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceCoilsStart"/>
-             </item>
-             <item row="7" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceCoilsSize"/>
-             </item>
-             <item row="8" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceInputRegistersStart"/>
-             </item>
              <item row="9" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceInputRegistersSize"/>
-             </item>
-             <item row="10" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceHoldingRegistersStart"/>
-             </item>
-             <item row="11" column="1">
               <widget class="QSpinBox" name="spinBox_deviceHoldingRegistersSize"/>
              </item>
             </layout>
            </item>
            <item>
             <layout class="QFormLayout" name="formLayout_3">
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>Protocol</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QComboBox" name="comboBox_deviceProtocol"/>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_8">
-               <property name="text">
-                <string>RTU Baud Rate</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceRtuBaudRate"/>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_9">
-               <property name="text">
-                <string>RTU Parity</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_10">
-               <property name="text">
-                <string>RTU Data Bits</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QLabel" name="label_11">
-               <property name="text">
-                <string>RTU Stop Bits</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QComboBox" name="comboBox_deviceRtuParity"/>
-             </item>
-             <item row="7" column="1">
-              <widget class="QSpinBox" name="spinBox_deviceRtuDataBits"/>
-             </item>
-             <item row="8" column="1">
-              <widget class="QSpinBox" name="spinBox_RtuStopBits"/>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>IP Port</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_6">
                <property name="text">
@@ -232,8 +175,65 @@
              <item row="0" column="1">
               <widget class="QLineEdit" name="lineEdit_deviceAddress"/>
              </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>IP Port</string>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="1">
               <widget class="QSpinBox" name="spinBox_deviceIpPort"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>Protocol</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="comboBox_deviceProtocol"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>RTU Baud Rate</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceRtuBaudRate"/>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>RTU Parity</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="comboBox_deviceRtuParity"/>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>RTU Data Bits</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceRtuDataBits"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>RTU Stop Bits</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QSpinBox" name="spinBox_deviceRtuStopBits"/>
              </item>
             </layout>
            </item>
