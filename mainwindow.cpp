@@ -7,12 +7,39 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    num_devices = 0;
+    devices.clear();
 
-    //connect(ui->toolButton_addDevice, SIGNAL(clicked(bool)), this, SLOT(do_updateNumDevices()));
+    connect(ui->toolButton_addDevice, SIGNAL(clicked(bool)), this, SLOT(do_addDevice()));
+    connect(ui->toolButton_delDevice, SIGNAL(clicked(bool)), this, SLOT(do_delDevice()));
+
+    do_addDevice();
+
+    ui->comboBox_deviceProtocol->clear();
+    ui->comboBox_deviceProtocol->insertItem(0, "TCP", "TCP");
+    ui->comboBox_deviceProtocol->insertItem(1, "RTU", "RTU");
+    ui->comboBox_deviceProtocol->setCurrentIndex(0);
+
+    ui->comboBox_deviceRtuParity->clear();
+    ui->comboBox_deviceRtuParity->insertItem(0, "None", 'N');
+    ui->comboBox_deviceRtuParity->insertItem(1, "Even", 'E');
+    ui->comboBox_deviceRtuParity->insertItem(2, "Odd", 'O');
+    ui->comboBox_deviceRtuParity->setCurrentIndex(0);
+
+    connect_params();
+
+//    write_config();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::connect_params()
+{
+    connect(ui->listWidget_devices, SIGNAL(currentRowChanged(int)), this, SLOT(do_displayDeviceSettings(int)));
+
     connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_updateProtocol(QString)));
-    //connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
-
     connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(int)), this, SLOT(do_updateDevice()));
     connect(ui->lineEdit_deviceName, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
     connect(ui->lineEdit_deviceAddress, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
@@ -29,36 +56,36 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->spinBox_deviceRtuDataBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
     connect(ui->spinBox_deviceRtuStopBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
     connect(ui->spinBox_deviceSlaveID, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
-
-    ui->listWidget_devices->addItem("1");
-    ui->listWidget_devices->addItem("2");
-
-    do_updateNumDevices();
-
-    ui->comboBox_deviceProtocol->clear();
-    ui->comboBox_deviceProtocol->insertItem(0, "TCP", "TCP");
-    ui->comboBox_deviceProtocol->insertItem(1, "RTU", "RTU");
-    ui->comboBox_deviceProtocol->setCurrentIndex(0);
-
-    ui->comboBox_deviceRtuParity->clear();
-    ui->comboBox_deviceRtuParity->insertItem(0, "None", 'N');
-    ui->comboBox_deviceRtuParity->insertItem(1, "Even", 'E');
-    ui->comboBox_deviceRtuParity->insertItem(2, "Odd", 'O');
-    ui->comboBox_deviceRtuParity->setCurrentIndex(0);
-
-    write_config();
 }
 
-MainWindow::~MainWindow()
+void MainWindow::disconnect_params()
 {
-    delete ui;
+    disconnect(ui->listWidget_devices, SIGNAL(currentRowChanged(int)), this, SLOT(do_displayDeviceSettings(int)));
+
+    disconnect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_updateProtocol(QString)));
+    disconnect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(int)), this, SLOT(do_updateDevice()));
+    disconnect(ui->lineEdit_deviceName, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->lineEdit_deviceAddress, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceCoilsSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceCoilsStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceDiscreteInputsSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceDiscreteInputsStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceHoldingRegistersSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceHoldingRegistersStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceInputRegistersSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceInputRegistersStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceIpPort, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceRtuBaudRate, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceRtuDataBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceRtuStopBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    disconnect(ui->spinBox_deviceSlaveID, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
 }
 
 void MainWindow::deviceInstantiate(mbDevice * device, int index)
 {
     device->name = "Default Slave";
     device->protocol = "TCP";
-    device->slave_id = index+1;
+    device->slave_id = index;
     device->address = "192.168.23.1";
     device->IP_port = 502;
     device->RTU_Baud_Rate = 9600;
@@ -75,22 +102,61 @@ void MainWindow::deviceInstantiate(mbDevice * device, int index)
     device->Holding_Registers_Size = 5;
 }
 
-void MainWindow::do_updateNumDevices()
+void MainWindow::dump_devices()
 {
-    //disconnect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
-    //int num = ui->spinBox_numDevices->value();
-    int num = 2;
-    devices.clear();
-    //ui->comboBox_currentDevice->clear();
-    for (int index = 0; index < num; index++)
+    for (int index = 0; index < devices.size(); index++)
     {
-        mbDevice newDevice;
-        deviceInstantiate(&newDevice, index);
-        devices.push_back(newDevice);
-        //ui->comboBox_currentDevice->insertItem(index, QString::number(index+1), index+1);
+        mbDevice dev = devices.at(index);
+        qDebug() << "Device: " << index;
+        qDebug() << dev.name;
+        qDebug() << dev.protocol;
+        qDebug() << dev.slave_id;
+        qDebug() << dev.address;
+        qDebug() << dev.IP_port;
+        qDebug() << dev.RTU_Baud_Rate;
+        qDebug() << dev.RTU_Parity;
+        qDebug() << dev.RTU_Data_Bits;
+        qDebug() << dev.RTU_Stop_Bits;
+        qDebug() << dev.Discrete_Inputs_Start;
+        qDebug() << dev.Discrete_Inputs_Size;
+        qDebug() << dev.Coils_Start;
+        qDebug() << dev.Coils_Size;
+        qDebug() << dev.Input_Registers_Start;
+        qDebug() << dev.Input_Registers_Size;
+        qDebug() << dev.Holding_Registers_Start;
+        qDebug() << dev.Holding_Registers_Size;
     }
-    do_displayDeviceSettings();
-    //connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
+}
+
+void MainWindow::do_addDevice()
+{
+    mbDevice newDevice;
+    int index = 1;
+    if (!devices.isEmpty())
+    {
+        index = devices.last().slave_id + 1;
+    }
+    qDebug() << "add row: " << index;
+    deviceInstantiate(&newDevice, index);
+    devices.push_back(newDevice);
+    QListWidgetItem * newitem = new QListWidgetItem;
+    newitem->setText(QString::number(index));
+    ui->listWidget_devices->addItem(newitem);
+}
+
+void MainWindow::do_delDevice()
+{
+    int index = ui->listWidget_devices->currentRow();
+    qDebug() << "Del row: " << index;
+    if (index < 0 || index > devices.count())
+    {
+        qDebug() << "Device doesn't exist? Not trying to delete.";
+        return;
+    }
+    devices.removeAt(index);
+    QListWidgetItem * delItem = ui->listWidget_devices->item(index);
+    delete delItem;
+    dump_devices();
 }
 
 void MainWindow::do_updateProtocol(QString protocol)
@@ -112,9 +178,9 @@ void MainWindow::do_updateProtocol(QString protocol)
     }
 }
 
-void MainWindow::do_displayDeviceSettings()
+void MainWindow::do_displayDeviceSettings(int index)
 {
-    int index = 1;// ui->comboBox_currentDevice->currentIndex();
+    //int index = ui->listWidget_devices->currentRow();
     mbDevice dev = devices.at(index);
 
     ui->lineEdit_deviceName->setText(dev.name);
@@ -134,12 +200,21 @@ void MainWindow::do_displayDeviceSettings()
     ui->spinBox_deviceInputRegistersSize->setValue(dev.Input_Registers_Size);
     ui->spinBox_deviceHoldingRegistersStart->setValue(dev.Holding_Registers_Start);
     ui->spinBox_deviceHoldingRegistersSize->setValue(dev.Holding_Registers_Size);
+
+    do_updateProtocol(dev.protocol);
 }
 
 void MainWindow::do_updateDevice()
 {
-    int index = 1;// ui->comboBox_currentDevice->currentIndex();
+    int index = ui->listWidget_devices->currentRow();
     mbDevice dev = devices.at(index);
+
+    qDebug() << "Device to update: " << index;
+    if (index < 0 || index > devices.count())
+    {
+        qDebug() << "Device doesn't exist? Not trying to update.";
+        return;
+    }
 
     dev.name = ui->lineEdit_deviceName->text();
     dev.protocol = ui->comboBox_deviceProtocol->currentText();

@@ -40,19 +40,22 @@ public:
     ~MainWindow();
 
 public slots:
-    void do_updateNumDevices();
     void do_updateProtocol(QString protocol);
-    void do_displayDeviceSettings();
+    void do_displayDeviceSettings(int index);
     void do_updateDevice();
+    void do_addDevice();
+    void do_delDevice();
 
 protected:
     void deviceInstantiate(mbDevice * device, int index);
     void write_config();
+    void connect_params();
+    void disconnect_params();
+    void dump_devices();
 
 private:
     Ui::MainWindow *ui;
     QList<mbDevice> devices;
-    int num_devices;
 };
 
 #endif // MAINWINDOW_H
