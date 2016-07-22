@@ -9,9 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     num_devices = 0;
 
-    connect(ui->spinBox_numDevices, SIGNAL(valueChanged(int)), this, SLOT(do_updateNumDevices()));
+    //connect(ui->toolButton_addDevice, SIGNAL(clicked(bool)), this, SLOT(do_updateNumDevices()));
     connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_updateProtocol(QString)));
-    connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
+    //connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
 
     connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(int)), this, SLOT(do_updateDevice()));
     connect(ui->lineEdit_deviceName, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->spinBox_deviceRtuStopBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
     connect(ui->spinBox_deviceSlaveID, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
 
+    ui->listWidget_devices->addItem("1");
+    ui->listWidget_devices->addItem("2");
+
     do_updateNumDevices();
 
     ui->comboBox_deviceProtocol->clear();
@@ -43,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_deviceRtuParity->insertItem(2, "Odd", 'O');
     ui->comboBox_deviceRtuParity->setCurrentIndex(0);
 
-
+    write_config();
 }
 
 MainWindow::~MainWindow()
@@ -74,18 +77,20 @@ void MainWindow::deviceInstantiate(mbDevice * device, int index)
 
 void MainWindow::do_updateNumDevices()
 {
-    disconnect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
-    int num = ui->spinBox_numDevices->value();
+    //disconnect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
+    //int num = ui->spinBox_numDevices->value();
+    int num = 2;
     devices.clear();
-    ui->comboBox_currentDevice->clear();
+    //ui->comboBox_currentDevice->clear();
     for (int index = 0; index < num; index++)
     {
         mbDevice newDevice;
         deviceInstantiate(&newDevice, index);
         devices.push_back(newDevice);
-        ui->comboBox_currentDevice->insertItem(index, QString::number(index+1), index+1);
+        //ui->comboBox_currentDevice->insertItem(index, QString::number(index+1), index+1);
     }
-    connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
+    do_displayDeviceSettings();
+    //connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
 }
 
 void MainWindow::do_updateProtocol(QString protocol)
@@ -109,7 +114,7 @@ void MainWindow::do_updateProtocol(QString protocol)
 
 void MainWindow::do_displayDeviceSettings()
 {
-    int index = ui->comboBox_currentDevice->currentIndex();
+    int index = 1;// ui->comboBox_currentDevice->currentIndex();
     mbDevice dev = devices.at(index);
 
     ui->lineEdit_deviceName->setText(dev.name);
@@ -133,7 +138,7 @@ void MainWindow::do_displayDeviceSettings()
 
 void MainWindow::do_updateDevice()
 {
-    int index = ui->comboBox_currentDevice->currentIndex();
+    int index = 1;// ui->comboBox_currentDevice->currentIndex();
     mbDevice dev = devices.at(index);
 
     dev.name = ui->lineEdit_deviceName->text();
@@ -155,4 +160,11 @@ void MainWindow::do_updateDevice()
     dev.Holding_Registers_Size = ui->spinBox_deviceHoldingRegistersSize->value();
 
     devices.replace(index, dev);
+}
+
+void MainWindow::write_config()
+{
+    QString filename;
+    filename = QFileDialog::getOpenFileName(this, tr("Select File"), "/home/", tr("*.cfg"));
+    qDebug() << filename;
 }

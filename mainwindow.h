@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QString>
 #include <QList>
+#include <QFileDialog>
+#include <QDebug>
 
 struct mbDevice {
     QString name;
@@ -45,6 +47,7 @@ public slots:
 
 protected:
     void deviceInstantiate(mbDevice * device, int index);
+    void write_config();
 
 private:
     Ui::MainWindow *ui;
