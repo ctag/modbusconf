@@ -6,6 +6,7 @@
 #include <QList>
 #include <QFileDialog>
 #include <QDebug>
+#include <QFile>
 
 struct mbDevice {
     QString name;
@@ -45,10 +46,10 @@ public slots:
     void do_updateDevice();
     void do_addDevice();
     void do_delDevice();
+    void write_config();
 
 protected:
     void deviceInstantiate(mbDevice * device, int index);
-    void write_config();
     void connect_params();
     void disconnect_params();
     void dump_devices();
