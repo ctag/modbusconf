@@ -33,6 +33,16 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
+             <widget class="QToolButton" name="toolButton_cloneDevice">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="text">
+               <string>Clone</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QToolButton" name="toolButton_addDevice">
               <property name="text">
                <string>+</string>
