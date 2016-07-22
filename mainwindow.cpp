@@ -13,6 +13,23 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_updateProtocol(QString)));
     connect(ui->comboBox_currentDevice, SIGNAL(currentIndexChanged(QString)), this, SLOT(do_displayDeviceSettings()));
 
+    connect(ui->comboBox_deviceProtocol, SIGNAL(currentIndexChanged(int)), this, SLOT(do_updateDevice()));
+    connect(ui->lineEdit_deviceName, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->lineEdit_deviceAddress, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceCoilsSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceCoilsStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceDiscreteInputsSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceDiscreteInputsStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceHoldingRegistersSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceHoldingRegistersStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceInputRegistersSize, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceInputRegistersStart, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceIpPort, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceRtuBaudRate, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceRtuDataBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceRtuStopBits, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+    connect(ui->spinBox_deviceSlaveID, SIGNAL(editingFinished()), this, SLOT(do_updateDevice()));
+
     do_updateNumDevices();
 
     ui->comboBox_deviceProtocol->clear();
@@ -112,4 +129,30 @@ void MainWindow::do_displayDeviceSettings()
     ui->spinBox_deviceInputRegistersSize->setValue(dev.Input_Registers_Size);
     ui->spinBox_deviceHoldingRegistersStart->setValue(dev.Holding_Registers_Start);
     ui->spinBox_deviceHoldingRegistersSize->setValue(dev.Holding_Registers_Size);
+}
+
+void MainWindow::do_updateDevice()
+{
+    int index = ui->comboBox_currentDevice->currentIndex();
+    mbDevice dev = devices.at(index);
+
+    dev.name = ui->lineEdit_deviceName->text();
+    dev.protocol = ui->comboBox_deviceProtocol->currentText();
+    dev.slave_id = ui->spinBox_deviceSlaveID->value();
+    dev.address = ui->lineEdit_deviceAddress->text();
+    dev.IP_port = ui->spinBox_deviceIpPort->value();
+    dev.RTU_Baud_Rate = ui->spinBox_deviceRtuBaudRate->value();
+    dev.RTU_Parity = ui->comboBox_deviceRtuParity->currentData().toChar();
+    dev.RTU_Data_Bits = ui->spinBox_deviceRtuDataBits->value();
+    dev.RTU_Stop_Bits = ui->spinBox_deviceRtuStopBits->value();
+    dev.Discrete_Inputs_Start = ui->spinBox_deviceDiscreteInputsStart->value();
+    dev.Discrete_Inputs_Size = ui->spinBox_deviceDiscreteInputsSize->value();
+    dev.Coils_Start = ui->spinBox_deviceCoilsStart->value();
+    dev.Coils_Size = ui->spinBox_deviceCoilsSize->value();
+    dev.Input_Registers_Start = ui->spinBox_deviceInputRegistersStart->value();
+    dev.Input_Registers_Size = ui->spinBox_deviceInputRegistersSize->value();
+    dev.Holding_Registers_Start = ui->spinBox_deviceHoldingRegistersStart->value();
+    dev.Holding_Registers_Size = ui->spinBox_deviceHoldingRegistersSize->value();
+
+    devices.replace(index, dev);
 }

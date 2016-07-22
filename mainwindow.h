@@ -41,6 +41,7 @@ public slots:
     void do_updateNumDevices();
     void do_updateProtocol(QString protocol);
     void do_displayDeviceSettings();
+    void do_updateDevice();
 
 protected:
     void deviceInstantiate(mbDevice * device, int index);
