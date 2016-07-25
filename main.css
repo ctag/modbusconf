@@ -1,0 +1,100 @@
+/* main.css */
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-family: 'Source Code Pro';
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	color: #3F3;
+	padding: 0;
+	margin: 0;
+}
+
+body,
+.button,
+.no_text_select {
+	/* Stop the text from highlighting */
+	-webkit-user-select: none; /* Webkit */
+	-moz-user-select: none;    /* Firefox */
+	-ms-user-select: none;     /* IE 10  */
+	/* Currently not supported in Opera but will be soon */
+	-o-user-select: none;
+	user-select: none;
+}
+
+input {
+	font-family: 'Source Code Pro';
+	font-size: 14px;
+	color: #3f3;
+	background: #111;
+}
+
+textarea {
+	font-family: 'Source Code Pro';
+	font-size: 14px;
+	color: #3f3;
+	background: #111;
+	border: 1px solid #0B0;
+	width: 90%;
+	height: 80%;
+	margin-left: 5%;
+	margin-top: 2%;
+}
+
+#topBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid #0a0;
+	text-align: center;
+	padding-top: 5px;
+}
+
+#setup {
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	display: none;
+}
+
+#config {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 95%;
+	height: 90%;
+	overflow: auto;
+}
+
+.active {
+	color: #F33;
+}
+
+.button {
+	margin: 2px;
+	padding: 4px;
+	border: solid 1px #0a0;
+	display: inline-block;
+}
+
+.button:hover {
+	color: #F66;
+	border-color: #F66;
+	cursor: pointer;
+}
