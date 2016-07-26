@@ -116,30 +116,31 @@ $("#config_list_new").click(function(e) {
 });
 
 $("#button_download").click(function(e) {
-    var text = "";
-    text += 'Num_Devices = "1" \n';
-    text += '# ------------\n';
-    text += '#   DEVICE 0\n';
-    text += '# ------------\n';
-    text += 'device0.name = "' + $('#device-name').val() + '"\n';
-    text += 'device0.protocol = "' + $('#device-protocol').val() + '"\n';
-    text += 'device0.slave_id = "' + $('#device-id').val() + '"\n';
-    text += 'device0.address = "' + $('#device-address').val() + '"\n';
-    text += 'device0.IP_Port = "' + $('#device-port').val() + '"\n';
-    text += 'device0.RTU_Baud_Rate = "' + $('#device-rtu-baud').val() + '"\n';
-    text += 'device0.RTU_Parity = "' + $('#device-rtu-parity').val() + '"\n';
-    text += 'device0.RTU_Data_Bits = "' + $('#device-rtu-data').val() + '"\n';
-    text += 'device0.RTU_Stop_Bits = "' + $('#device-rtu-stop').val() + '"\n';
-    text += '\n';
-    text += 'device0.Discrete_Inputs_Start = "' + $('#device-discrete-input-start').val() + '"\n';
-    text += 'device0.Discrete_Inputs_Size = "' + $('#device-discrete-input-size').val() + '"\n';
-    text += 'device0.Coils_Start = "' + $('#device-coils-start').val() + '"\n';
-    text += 'device0.Coils_Size = "' + $('#device-coils-size').val() + '"\n';
-    text += 'device0.Input_Registers_Start = "' + $('#device-input-registers-start').val() + '"\n';
-    text += 'device0.Input_Registers_Size = "' + $('#device-input-registers-size').val() + '"\n';
-    text += 'device0.Holding_Registers_Start = "' + $('#device-holding-registers-start').val() + '"\n';
-    text += 'device0.Holding_Registers_Size = "' + $('#device-holding-registers-size').val() + '"\n';
-
+    var text = 'Num_Devices = "' + devices.length + '" \n';
+    for (var dev in devices)
+    {
+        var prefix = 'device' + dev;
+        text += '\n# ------------\n';
+        text += '#   DEVICE ' + dev + '\n';
+        text += '# ------------\n';
+        text += prefix + '.name = "' + devices[dev].name + '"\n';
+        text += prefix + '.protocol = "' + devices[dev].protocol + '"\n';
+        text += prefix + '.slave_id = "' + devices[dev].slave_id + '"\n';
+        text += prefix + '.address = "' + devices[dev].address + '"\n';
+        text += prefix + '.IP_Port = "' + devices[dev].IP_Port + '"\n';
+        text += prefix + '.RTU_Baud_Rate = "' + devices[dev].RTU_Baud_Rate + '"\n';
+        text += prefix + '.RTU_Parity = "' + devices[dev].RTU_Parity + '"\n';
+        text += prefix + '.RTU_Data_Bits = "' + devices[dev].RTU_Data_Bits + '"\n';
+        text += prefix + '.RTU_Stop_Bits = "' + devices[dev].RTU_Stop_Bits + '"\n';
+        text += prefix + '.Discrete_Inputs_Start = "' + devices[dev].Discrete_Inputs_Start + '"\n';
+        text += prefix + '.Discrete_Inputs_Size = "' + devices[dev].Discrete_Inputs_Size + '"\n';
+        text += prefix + '.Coils_Start = "' + devices[dev].Coils_Start + '"\n';
+        text += prefix + '.Coils_Size = "' + devices[dev].Coils_Size + '"\n';
+        text += prefix + '.Input_Registers_Start = "' + devices[dev].Input_Registers_Start + '"\n';
+        text += prefix + '.Input_Registers_Size = "' + devices[dev].Input_Registers_Size + '"\n';
+        text += prefix + '.Holding_Registers_Start = "' + devices[dev].Holding_Registers_Start + '"\n';
+        text += prefix + '.Holding_Registers_Size = "' + devices[dev].Holding_Registers_Size + '"\n';
+    }
     download("modbusdevice.cfg", text);
 });
 
