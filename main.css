@@ -141,3 +141,9 @@ textarea {
 	/*border-color: #F66;*/
 	cursor: pointer;
 }
+
+.config_list_button:hover {
+	color: #F66;
+	/*border-color: #F66;*/
+	cursor: pointer;
+}
