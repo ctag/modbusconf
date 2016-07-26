@@ -1,16 +1,66 @@
+var devices = [];
+
+function instantiate_new() {
+    var dev = {};
+    dev.name = "New Device";
+    dev.protocol = "TCP";
+    if (devices.length) {
+        dev.slave_id = devices.length;
+    }
+    else {
+        dev.slave_id = 0;
+    }
+    dev.address = "192.168.23.1";
+    dev.IP_Port = 502;
+    dev.RTU_Baud_Rate = 9600;
+    dev.RTU_Parity = "N";
+    dev.RTU_Data_Bits = 8;
+    dev.RTU_Stop_Bits = 1;
+    dev.Discrete_Inputs_Start = 0;
+    dev.Discrete_Inputs_Size = 8;
+    dev.Coils_Start = 0;
+    dev.Coils_Size = 4;
+    dev.Input_Registers_Start = 0;
+    dev.Input_Registers_Size = 10;
+    dev.Holding_Registers_Start = 0;
+    dev.Holding_Registers_Size = 5;
+    return dev;
+}
+
 function download(filename, text) {
     console.log("Doing download");
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+    element.style.display = 'none';
+    document.body.appendChild(element);
 
-  element.click();
+    element.click();
 
-  document.body.removeChild(element);
+    document.body.removeChild(element);
 }
+
+function update_list()
+{
+    var list = $("#config_list");
+    $(".config_list_item").remove();
+    for (var dev in devices)
+    {
+        //console.log(devices[dev]);
+        var elem = "<div id=\"";
+        elem += "device_" + devices[dev].slave_id + "\"";
+        elem += " class=\"config_list_item\">";
+        elem += devices[dev].slave_id + " - " + devices[dev].name + "</div>";
+        list.append(elem);
+    }
+}
+
+$("#config_list_new").click(function(e) {
+    devices.push(instantiate_new());
+    console.log(devices);
+    update_list();
+});
 
 $("#button_download").click(function(e) {
     var text = "";

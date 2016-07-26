@@ -82,6 +82,25 @@ textarea {
 	overflow: auto;
 }
 
+#config_list {
+	position: absolute;
+	top: 50px;
+	left: 25px;
+	width: 200px;
+	height: 90%;
+	overflow: auto;
+	border: 1px solid #0B0;
+}
+
+#config_values {
+	position: absolute;
+	top: 50px;
+	left: 250px;
+	height: 90%;
+	overflow: auto;
+	border: 1px solid #0B0;
+}
+
 .active {
 	color: #F33;
 }
@@ -96,5 +115,25 @@ textarea {
 .button:hover {
 	color: #F66;
 	border-color: #F66;
+	cursor: pointer;
+}
+
+.config_list_button,
+.config_list_item {
+	margin: 2px;
+	padding: 4px;
+	/*border: solid 1px #0a0;*/
+	background: #030;
+	width: 188px;
+	display: inline-block;
+}
+
+.config_list_button {
+	text-align: center;
+}
+
+.config_list_item:hover {
+	color: #F66;
+	/*border-color: #F66;*/
 	cursor: pointer;
 }

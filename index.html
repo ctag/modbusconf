@@ -10,45 +10,52 @@
 
     <div id="topBar">
     	<div id="button_download" class="button">Download</div>
+        <div id="button_view" class="button">View</div>
     </div><!-- topBar -->
 
     <div id="setup">
     </div><!-- setup -->
 
     <div id="config">
-        Name: <input id="device-name" style="" type="text" value="Default Device">
-        <br>
-        Protocol: <input id="device-protocol" style="" type="text" value="TCP">
-        <br>
-        Slave ID: <input id="device-id" style="" type="number" value="1">
-        <br>
-        Address: <input id="device-address" style="" type="text" value="192.168.23.1">
-        <br>
-        IP Port: <input id="device-port" style="" type="number" value="502">
-        <br>
-        RTU Baud Rate: <input id="device-rtu-baud" style="" type="number" value="9600">
-        <br>
-        RTU Parity: <input id="device-rtu-parity" style="" type="text" value="N">
-        <br>
-        RTU Data Bits: <input id="device-rtu-data" style="" type="number" value="8">
-        <br>
-        RTU Stop Bits: <input id="device-rtu-stop" style="" type="number" value="1">
-        <br>
-        Discrete Inputs Start: <input id="device-discrete-input-start" style="" type="number" value="0">
-        <br>
-        Discrete Inputs Size: <input id="device-discrete-input-size" style="" type="number" value="8">
-        <br>
-        Coils Start: <input id="device-coils-start" style="" type="number" value="0">
-        <br>
-        Coils Size: <input id="device-coils-size" style="" type="number" value="4">
-        <br>
-        Input Registers Start: <input id="device-input-registers-start" style="" type="number" value="0">
-        <br>
-        Input Registers Size: <input id="device-input-registers-size" style="" type="number" value="10">
-        <br>
-        Holding Registers Start: <input id="device-holding-registers-start" style="" type="number" value="0">
-        <br>
-        Holding Registers Size: <input id="device-holding-registers-size" style="" type="number" value="5">
+        <div id="config_list">
+            <div id="config_list_new" class="config_list_button">+</div>
+            <!-- <div id="device_0" class="config_list_item">0 - New Device</div> -->
+        </div>
+        <div id="config_values">
+            Name: <input id="device-name" style="" type="text" value="Default Device">
+            <br>
+            Protocol: <input id="device-protocol" style="" type="text" value="TCP">
+            <br>
+            Slave ID: <input id="device-id" style="" type="number" value="1">
+            <br>
+            Address: <input id="device-address" style="" type="text" value="192.168.23.1">
+            <br>
+            IP Port: <input id="device-port" style="" type="number" value="502">
+            <br>
+            RTU Baud Rate: <input id="device-rtu-baud" style="" type="number" value="9600">
+            <br>
+            RTU Parity: <input id="device-rtu-parity" style="" type="text" value="N">
+            <br>
+            RTU Data Bits: <input id="device-rtu-data" style="" type="number" value="8">
+            <br>
+            RTU Stop Bits: <input id="device-rtu-stop" style="" type="number" value="1">
+            <br>
+            Discrete Inputs Start: <input id="device-discrete-input-start" style="" type="number" value="0">
+            <br>
+            Discrete Inputs Size: <input id="device-discrete-input-size" style="" type="number" value="8">
+            <br>
+            Coils Start: <input id="device-coils-start" style="" type="number" value="0">
+            <br>
+            Coils Size: <input id="device-coils-size" style="" type="number" value="4">
+            <br>
+            Input Registers Start: <input id="device-input-registers-start" style="" type="number" value="0">
+            <br>
+            Input Registers Size: <input id="device-input-registers-size" style="" type="number" value="10">
+            <br>
+            Holding Registers Start: <input id="device-holding-registers-start" style="" type="number" value="0">
+            <br>
+            Holding Registers Size: <input id="device-holding-registers-size" style="" type="number" value="5">
+        </div><!-- config_values -->
     </div><!-- config -->
 
 </body>
