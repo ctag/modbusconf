@@ -101,6 +101,16 @@ textarea {
 	border: 1px solid #0B0;
 }
 
+#config_preview {
+	position: absolute;
+	top: 50px;
+	right: 25px;
+	height: 90%;
+	overflow: auto;
+	border: 1px solid #0B0;
+	max-width: 400px;
+}
+
 .active {
 	color: #F33;
 }

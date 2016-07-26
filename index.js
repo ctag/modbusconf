@@ -113,9 +113,11 @@ $("#config_list_new").click(function(e) {
     devices.push(instantiate_new());
     console.log(devices);
     update_list();
+    update_preview();
 });
 
-$("#button_download").click(function(e) {
+function create_config()
+{
     var text = 'Num_Devices = "' + devices.length + '" \n';
     for (var dev in devices)
     {
@@ -141,8 +143,17 @@ $("#button_download").click(function(e) {
         text += prefix + '.Holding_Registers_Start = "' + devices[dev].Holding_Registers_Start + '"\n';
         text += prefix + '.Holding_Registers_Size = "' + devices[dev].Holding_Registers_Size + '"\n';
     }
-    download("modbusdevice.cfg", text);
+    return(text);
+}
+
+$("#button_download").click(function(e) {
+
+    download("modbusdevice.cfg", create_config());
 });
+
+function update_preview() {
+    $('#config_preview').html(create_config().replace(/\n/g, '\n<br>'));
+}
 
 $('.config_values_input').change(function(e) {
     var elem = $('.config_list_item_selected');
@@ -176,4 +187,6 @@ $('.config_values_input').change(function(e) {
     devices[dev].Input_Registers_Size = $('#device-input-registers-size').val();
     devices[dev].Holding_Registers_Start = $('#device-holding-registers-start').val();
     devices[dev].Holding_Registers_Size = $('#device-holding-registers-size').val();
+
+    update_preview();
 });
