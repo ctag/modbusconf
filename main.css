@@ -36,6 +36,7 @@ input {
 	font-size: 14px;
 	color: #3f3;
 	background: #111;
+	border-color: #333;
 }
 
 textarea {
