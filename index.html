@@ -24,7 +24,11 @@
         <div id="config_values">
             Name: <input id="device-name" class="config_values_input" type="text" value="NA">
             <br>
-            Protocol: <input id="device-protocol" class="config_values_input" type="text" value="NA">
+            Protocol:
+            <select name="device-protocol" id="device-protocol" class="config_values_input">
+                <option value="TCP">TCP</option>
+                <option value="RTU">RTU</option>
+            </select>
             <br>
             Slave ID: <input id="device-id" class="config_values_input" type="number" value="0">
             <br>
