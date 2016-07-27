@@ -107,6 +107,17 @@ function set_values(dev)
     $('#device-input-registers-size').val(dev.Input_Registers_Size);
     $('#device-holding-registers-start').val(dev.Holding_Registers_Start);
     $('#device-holding-registers-size').val(dev.Holding_Registers_Size);
+    update_protocol($('#device-protocol').val());
+}
+
+function update_protocol(protocol)
+{
+    if (protocol === "TCP") {
+        $('.config_rtu').prop('disabled', true);
+    }
+    else {
+        $('.config_rtu').prop('disabled', false);
+    }
 }
 
 $("#config_list_new").click(function(e) {
@@ -147,7 +158,6 @@ function create_config()
 }
 
 $("#button_download").click(function(e) {
-
     download("modbusdevice.cfg", create_config());
 });
 
@@ -188,5 +198,6 @@ $('.config_values_input').change(function(e) {
     devices[dev].Holding_Registers_Start = $('#device-holding-registers-start').val();
     devices[dev].Holding_Registers_Size = $('#device-holding-registers-size').val();
 
+    update_protocol($('#device-protocol').val());
     update_preview();
 });
