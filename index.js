@@ -113,10 +113,10 @@ function set_values(dev)
 function update_protocol(protocol)
 {
     if (protocol === "TCP") {
-        $('.config_rtu').prop('disabled', true);
+        $('.config_rtu').prop('disabled', true).css("color", "#040");
     }
     else {
-        $('.config_rtu').prop('disabled', false);
+        $('.config_rtu').prop('disabled', false).css("color", '#3f3');
     }
 }
 
