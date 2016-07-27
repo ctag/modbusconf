@@ -88,6 +88,70 @@ function update_list()
     });
 }
 
+function parseConfigFile(contents)
+{
+  devices = [];
+  var text = contents.split('\n');
+  console.log(text);
+  var reg = {};
+  reg.name = /^device(\d+)\.name.*"(.*)"/;
+
+
+  reg.protocol = /^device(\d+)\.protocol.*"(.*)"$/;
+  reg.slave_id = /^device(\d+)\.slave_id.*"(.*)"$/;
+  reg.address = /^device(\d+)\.address.*"(.*)"$/;
+  reg.IP_Port = /^device(\d+)\.IP_Port.*"(.*)"$/;
+  reg.RTU_Baud_Rate = /^device(\d+)\.RTU_Baud_Rate.*"(.*)"$/;
+  reg.RTU_Parity = /^device(\d+)\.RTU_Parity.*"(.*)"$/;
+  reg.RTU_Data_Bits = /^device(\d+)\.RTU_Data_Bits.*"(.*)"$/;
+  reg.RTU_Stop_Bits = /^device(\d+)\.RTU_Stop_Bits.*"(.*)"$/;
+  reg.Discrete_Inputs_Start = /^device(\d+)\.Discrete_Inputs_Start.*"(.*)"$/;
+  reg.Discrete_Inputs_Size = /^device(\d+)\.Discrete_Inputs_Size.*"(.*)"$/;
+  reg.Coils_Start = /^device(\d+)\.Coils_Start.*"(.*)"$/;
+  reg.Coils_Size = /^device(\d+)\.Coils_Size.*"(.*)"$/;
+  reg.Input_Registers_Start = /^device(\d+)\.Input_Registers_Start.*"(.*)"$/;
+  reg.Input_Registers_Size = /^device(\d+)\.Input_Registers_Size.*"(.*)"$/;
+  reg.Holding_Registers_Start = /^device(\d+)\.Holding_Registers_Start.*"(.*)"$/;
+  reg.Holding_Registers_Size = /^device(\d+)\.Holding_Registers_Size.*"(.*)"$/;
+
+  for (var line in text)
+  {
+    for (var param in reg) {
+      var result = reg[param].exec(text[line]);
+      if (result) {
+        // 0 - full match
+        // 1 - device number
+        // 2 - param value
+        // 1*string creates a number
+        var dev = 1*result[1];
+        console.log(line, dev, param, result);
+        console.log(typeof devices[dev]);
+        if (typeof(devices[dev]) !== 'object') {
+          devices[dev] = {};
+        }
+        devices[dev][param] = result[2];
+      }
+    }
+  }
+  update_list();
+  update_preview();
+}
+
+function readSingleFile(e) {
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+    parseConfigFile(contents);
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('button_openFile').addEventListener('change', readSingleFile, false);
+
 function set_values(dev)
 {
     $('#device-name').val(dev.name);
