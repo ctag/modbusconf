@@ -92,11 +92,9 @@ function parseConfigFile(contents)
 {
   devices = [];
   var text = contents.split('\n');
-  console.log(text);
   var reg = {};
+
   reg.name = /^device(\d+)\.name.*"(.*)"/;
-
-
   reg.protocol = /^device(\d+)\.protocol.*"(.*)"$/;
   reg.slave_id = /^device(\d+)\.slave_id.*"(.*)"$/;
   reg.address = /^device(\d+)\.address.*"(.*)"$/;
@@ -119,10 +117,11 @@ function parseConfigFile(contents)
     for (var param in reg) {
       var result = reg[param].exec(text[line]);
       if (result) {
-        // 0 - full match
-        // 1 - device number
-        // 2 - param value
-        // 1*string creates a number
+        /* 0 - full match
+         * 1 - device number
+         * 2 - param value
+         * (1*string) creates a number
+         */
         var dev = 1*result[1];
         console.log(line, dev, param, result);
         console.log(typeof devices[dev]);

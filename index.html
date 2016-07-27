@@ -37,7 +37,12 @@
                 <br>
                 RTU Baud Rate: <input id="device-rtu-baud" class="config_values_input config_rtu" type="number" value="0">
                 <br>
-                RTU Parity: <input id="device-rtu-parity" class="config_values_input config_rtu" type="text" value="N">
+                RTU Parity:
+                <select name="device-rtu-parity" id="device-rtu-parity" class="config_values_input">
+                    <option value="N">None</option>
+                    <option value="E">Even</option>
+                    <option value="O">Odd</option>
+                </select>
                 <br>
                 RTU Data Bits: <input id="device-rtu-data" class="config_values_input config_rtu" type="number" value="0">
                 <br>
