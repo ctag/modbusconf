@@ -21,50 +21,69 @@
         <div id="config_values">
             <div class="title_box">Device Configuration</div>
             <div class="box">
-                Name: <input id="device-name" class="config_values_input" type="text" value="NA">
-                <br>
-                Protocol:
-                <select name="device-protocol" id="device-protocol" class="config_values_input">
-                    <option value="TCP">TCP</option>
-                    <option value="RTU">RTU</option>
-                </select>
-                <br>
-                Slave ID: <input id="device-id" class="config_values_input" type="number" value="0">
-                <br>
-                Address: <input id="device-address" class="config_values_input" type="text" value="0.0.0.0">
-                <br>
-                IP Port: <input id="device-port" class="config_values_input" type="number" value="0">
-                <br>
-                RTU Baud Rate: <input id="device-rtu-baud" class="config_values_input config_rtu" type="number" value="0">
-                <br>
-                RTU Parity:
-                <select name="device-rtu-parity" id="device-rtu-parity" class="config_values_input config_rtu">
-                    <option value="N">None</option>
-                    <option value="E">Even</option>
-                    <option value="O">Odd</option>
-                </select>
-                <br>
-                RTU Data Bits: <input id="device-rtu-data" class="config_values_input config_rtu" type="number" value="0">
-                <br>
-                RTU Stop Bits: <input id="device-rtu-stop" class="config_values_input config_rtu" type="number" value="0">
+                <div class="config_value_box">
+                    Name: <input id="device-name" class="config_values_input" type="text" value="NA">
+                </div>
+                <div class="config_value_box">
+                    Protocol:
+                    <select name="device-protocol" id="device-protocol" class="config_values_input">
+                        <option value="TCP">TCP</option>
+                        <option value="RTU">RTU</option>
+                    </select>
+                </div>
+                <div class="config_value_box">
+                    Slave ID: <input id="device-id" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Address: <input id="device-address" class="config_values_input" type="text" value="0.0.0.0">
+                </div>
+                <div class="config_value_box">
+                    IP Port: <input id="device-port" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    RTU Baud Rate: <input id="device-rtu-baud" class="config_values_input config_rtu" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    RTU Parity:
+                    <select name="device-rtu-parity" id="device-rtu-parity" class="config_values_input config_rtu">
+                        <option value="N">None</option>
+                        <option value="E">Even</option>
+                        <option value="O">Odd</option>
+                    </select>
+                </div>
+                <div class="config_value_box">
+                    RTU Data Bits: <input id="device-rtu-data" class="config_values_input config_rtu" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    RTU Stop Bits: <input id="device-rtu-stop" class="config_values_input config_rtu" type="number" value="0">
+                </div>
             </div>
             <div class="title_box">I/O Configuration</div>
             <div class="box">
-                Discrete Inputs Start: <input id="device-discrete-input-start" class="config_values_input" type="number" value="0">
-                <br>
-                Discrete Inputs Size: <input id="device-discrete-input-size" class="config_values_input" type="number" value="0">
-                <br>
-                Coils Start: <input id="device-coils-start" class="config_values_input" type="number" value="0">
-                <br>
-                Coils Size: <input id="device-coils-size" class="config_values_input" type="number" value="0">
-                <br>
-                Input Registers Start: <input id="device-input-registers-start" class="config_values_input" type="number" value="0">
-                <br>
-                Input Registers Size: <input id="device-input-registers-size" class="config_values_input" type="number" value="0">
-                <br>
-                Holding Registers Start: <input id="device-holding-registers-start" class="config_values_input" type="number" value="0">
-                <br>
-                Holding Registers Size: <input id="device-holding-registers-size" class="config_values_input" type="number" value="0">
+                <div class="config_value_box">
+                    Discrete Inputs Start: <input id="device-discrete-input-start" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Discrete Inputs Size: <input id="device-discrete-input-size" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Coils Start: <input id="device-coils-start" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Coils Size: <input id="device-coils-size" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Input Registers Start: <input id="device-input-registers-start" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Input Registers Size: <input id="device-input-registers-size" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Holding Registers Start: <input id="device-holding-registers-start" class="config_values_input" type="number" value="0">
+                </div>
+                <div class="config_value_box">
+                    Holding Registers Size: <input id="device-holding-registers-size" class="config_values_input" type="number" value="0">
+                </div>
             </div>
         </div><!-- config_values -->
         <div id="config_preview">
