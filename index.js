@@ -270,8 +270,7 @@ function handler_config_values_input(e) {
 }
 for (var index = 0; index < elems.config_values_input.length; index++) {
     var element = elems.config_values_input.item(index);
-    if (element.attachEvent) element.attachEvent('onchange', handler_config_values_input);
-    else element.addEventListener('change', handler_config_values_input);
+	addEvent(element, 'change', handler_config_values_input);
 }
 
 // Item clicked
@@ -337,8 +336,7 @@ function download(filename, text) {
 function handler_button_download(e) {
     download("modbusdevice.cfg", create_config());
 }
-if (elems.button_download.attachEvent) elems.button_download.attachEvent('onclick', handler_button_download);
-else elems.button_download.addEventListener('click', handler_button_download);
+addEvent(elems.button_download, 'click', handler_button_download);
 
 // New device button
 function handler_list_new(e) {
@@ -347,5 +345,4 @@ function handler_list_new(e) {
     update_list();
     update_preview();
 }
-if (elems.button_list_new.attachEvent) elems.button_list_new.attachEvent('onclick', handler_list_new);
-else elems.button_list_new.addEventListener('click', handler_list_new);
+addEvent(elems.button_list_new, 'click', handler_list_new);
