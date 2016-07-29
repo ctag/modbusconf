@@ -8,6 +8,38 @@ elems.button_list_new = document.getElementById('config_list_new');
 elems.config_values_input = document.getElementsByClassName('config_values_input');
 elems.config_rtu = document.getElementsByClassName('config_rtu');
 
+//
+// Helper functions
+//
+
+function hasClass(el, className) {
+    return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
+}
+
+function addClass(el, className) {
+    if (el.classList) el.classList.add(className);
+    else if (!hasClass(el, className)) el.className += ' ' + className;
+}
+
+function removeClass(el, className) {
+    if (el.classList) el.classList.remove(className);
+    else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+}
+
+function addEvent(el, type, handler) {
+    if (el.attachEvent) el.attachEvent('on' + type, handler);
+    else el.addEventListener(type, handler);
+}
+
+function removeEvent(el, type, handler) {
+    if (el.detachEvent) el.detachEvent('on' + type, handler);
+    else el.removeEventListener(type, handler);
+}
+
+//
+// modbusconf functions
+//
+
 // Create a new device
 function instantiate_new() {
     var dev = {};
@@ -60,30 +92,6 @@ function get_dev(text) {
             return dev;
         }
     }
-}
-
-function hasClass(el, className) {
-    return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
-}
-
-function addClass(el, className) {
-    if (el.classList) el.classList.add(className);
-    else if (!hasClass(el, className)) el.className += ' ' + className;
-}
-
-function removeClass(el, className) {
-    if (el.classList) el.classList.remove(className);
-    else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
-}
-
-function addEvent(el, type, handler) {
-    if (el.attachEvent) el.attachEvent('on' + type, handler);
-    else el.addEventListener(type, handler);
-}
-
-function removeEvent(el, type, handler) {
-    if (el.detachEvent) el.detachEvent('on' + type, handler);
-    else el.removeEventListener(type, handler);
 }
 
 function update_list() {
