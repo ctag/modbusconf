@@ -8,17 +8,16 @@
 </head>
 <body>
 
-    <div id="topBar">
+    <div id="topBar" class="header">
         <div id="button_openFile" class="button" title="Click to upload existing configuration file.">Upload</div>
     	<div id="button_download" class="button" title="Click to download current configuration.">Download</div>
     </div><!-- topBar -->
 
-    <div id="config">
-        <div id="config_list">
-            <div id="config_list_new" class="config_list_button" title="Click to create a new device.">+</div>
-            <!-- <div id="device_0" class="config_list_item">0 - New Device</div> -->
+    <div id="config" class="content_wrapper">
+        <div id="config_list" class="list_wrapper">
+            <div id="config_list_new" class="config_list_button" title="Click to create a new device.">[+]</div>
         </div>
-        <div id="config_values">
+        <div id="config_values" class="values_wrapper">
             <div class="title_box">Device Configuration</div>
             <div class="box">
                 <div class="config_value_box">
@@ -86,7 +85,7 @@
                 </div>
             </div>
         </div><!-- config_values -->
-        <div id="config_preview">
+        <div id="config_preview" class="preview_wrapper">
             Create a device to see config preview.
         </div>
     </div><!-- config -->

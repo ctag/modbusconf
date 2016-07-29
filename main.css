@@ -1,34 +1,37 @@
 /* main.css */
 
 html {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	font-family: 'Source Code Pro';
-	font-size: 16px;
-	padding: 0;
-	margin: 0;
+    font-family: 'Source Code Pro';
+    font-size: 16px;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
 }
 
 body {
-	width: 100%;
-	height: 100%;
-	background: #000;
-	color: #3F3;
-	padding: 0;
-	margin: 0;
+    background: #000;
+    color: #3F3;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 body,
 .button,
 .no_text_select {
-	/* Stop the text from highlighting */
-	-webkit-user-select: none; /* Webkit */
-	-moz-user-select: none;    /* Firefox */
-	-ms-user-select: none;     /* IE 10  */
-	/* Currently not supported in Opera but will be soon */
-	-o-user-select: none;
-	user-select: none;
+    /* Stop the text from highlighting */
+    -webkit-user-select: none;
+    /* Webkit */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE 10  */
+    /* Currently not supported in Opera but will be soon */
+    -o-user-select: none;
+    user-select: none;
 }
 
 div::-webkit-scrollbar {
@@ -37,142 +40,144 @@ div::-webkit-scrollbar {
 
 div::-webkit-scrollbar-track {
     background-color: #020;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 div::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border: 1px solid slategrey;
+    background-color: darkgrey;
+    border: 1px solid slategrey;
 }
 
 select,
 input {
-	font-family: 'Source Code Pro';
-	font-size: 14px;
-	color: #3f3;
-	background: #111;
-	border-color: #333;
+    background: #111;
+    border-color: #333;
+    color: #3f3;
+    font-family: 'Source Code Pro';
+    font-size: 14px;
 }
 
 textarea {
-	font-family: 'Source Code Pro';
-	font-size: 14px;
-	color: #3f3;
-	background: #111;
-	border: 1px solid #0B0;
-	width: 90%;
-	height: 80%;
-	margin-left: 5%;
-	margin-top: 2%;
+    background: #111;
+    border: 1px solid #0B0;
+    color: #3f3;
+    font-family: 'Source Code Pro';
+    font-size: 14px;
+    height: 80%;
+    margin-left: 5%;
+    margin-top: 2%;
+    width: 90%;
 }
 
-#topBar {
-	width: 100%;
-	height: 40px;
-	border-bottom: 1px solid #0a0;
-	text-align: center;
-	padding-top: 5px;
+.header {
+    border-bottom: 1px solid #0a0;
+    height: 40px;
+    padding-top: 5px;
+    text-align: center;
+    width: 100%;
 }
 
-#config {
-	padding-top: 25px;
-	padding-left: 25px;
-	width: 100%;
-	height: 90%;
-	overflow: auto;
+.content_wrapper {
+    height: 90%;
+    overflow: auto;
+    padding-top: 25px;
+    padding-left: 25px;
+    width: 100%;
 }
 
-#config_list {
-	width: 200px;
-	height: 90%;
-	overflow: auto;
-	border: 1px solid #0B0;
-	display: inline-block;
+.list_wrapper {
+    border: 1px solid #0B0;
+    display: inline-block;
+    height: 90%;
+    overflow: auto;
+    width: 200px;
 }
 
-#config_values {
-	min-width: 300px;
-	height: 90%;
-	overflow: auto;
-	border: 1px solid #0B0;
-	display: inline-block;
+.values_wrapper {
+    border: 1px solid #0B0;
+    display: inline-block;
+    height: 90%;
+    min-width: 300px;
+    overflow: auto;
 }
 
 .config_value_box {
-	border-bottom: 1px dashed #090;
-	text-align: right;
+    border-bottom: 1px dashed #090;
+    text-align: right;
 }
 
 .config_values_input {
-	width: 10em;
+    width: 10em;
 }
 
 input {
-	margin-bottom: 2px;
-	margin-top: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .title_box {
-	color: #fff;
-	text-align: center;
-	padding-top: 15px;
+    color: #fff;
+    text-align: center;
+    padding-top: 15px;
 }
 
-#config_preview {
-	min-width: 300px;
-	height: 90%;
-	overflow-y: auto;
-	border: 1px solid #0B0;
-	display: inline-block;
+.preview_wrapper {
+    min-width: 300px;
+    height: 90%;
+    overflow-y: auto;
+    border: 1px solid #0B0;
+    display: inline-block;
 }
 
 .box {
-	border: 1px solid #0b0;
-	margin: 5px;
+    border: 1px solid #0b0;
+    margin: 5px;
 }
 
 .active {
-	color: #F33;
+    color: #F33;
 }
 
 .button {
-	margin: 2px;
-	padding: 4px;
-	border: solid 1px #0a0;
-	display: inline-block;
+    border: solid 1px #0a0;
+    display: inline-block;
+    margin: 2px;
+    padding: 4px;
 }
 
 .button:hover {
-	color: #F66;
-	border-color: #F66;
-	cursor: pointer;
+    border-color: #F66;
+    color: #F66;
+    cursor: pointer;
 }
 
 .config_list_button,
 .config_list_item {
-	margin: 2px;
-	padding: 4px;
-	/*border: solid 1px #0a0;*/
-	background: #030;
-	width: 188px;
+    background: #030;
+    margin: 2px;
+    padding: 4px;
+    /*border: solid 1px #0a0;*/
+    width: 188px;
 }
 
 .config_list_item_selected {
-	background: #600;
+    background: #600;
 }
 
 .config_list_button {
-	text-align: center;
+    text-align: center;
 }
 
 .config_list_item:hover {
-	color: #F66;
-	/*border-color: #F66;*/
-	cursor: pointer;
+    color: #F66;
+    /*border-color: #F66;*/
+    cursor: pointer;
 }
 
 .config_list_button:hover {
-	color: #F66;
-	/*border-color: #F66;*/
-	cursor: pointer;
+    color: #F66;
+    /*border-color: #F66;*/
+    cursor: pointer;
 }
