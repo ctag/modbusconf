@@ -42,35 +42,28 @@ function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
-
     element.style.display = 'none';
     document.body.appendChild(element);
-
     element.click();
-
     document.body.removeChild(element);
 }
 
-function get_title(dev)
-{
+function get_title(dev) {
     var text = dev.slave_id + " - " + dev.name;
     return text;
 }
 
-function get_dev(text)
-{
-    for (var dev in devices)
-    {
+function get_dev(text) {
+    for (var dev in devices) {
         var compare = get_title(devices[dev]);
-        if (compare === text)
-        {
+        if (compare === text) {
             return dev;
         }
     }
 }
 
 function hasClass(el, className) {
-    return el.classList ? el.classList.contains(className) : new RegExp('\\b'+ className+'\\b').test(el.className);
+    return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
 }
 
 function addClass(el, className) {
@@ -80,30 +73,31 @@ function addClass(el, className) {
 
 function removeClass(el, className) {
     if (el.classList) el.classList.remove(className);
-    else el.className = el.className.replace(new RegExp('\\b'+ className+'\\b', 'g'), '');
+    else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
 }
 
 function addEvent(el, type, handler) {
-    if (el.attachEvent) el.attachEvent('on'+type, handler); else el.addEventListener(type, handler);
-}
-function removeEvent(el, type, handler) {
-    if (el.detachEvent) el.detachEvent('on'+type, handler); else el.removeEventListener(type, handler);
+    if (el.attachEvent) el.attachEvent('on' + type, handler);
+    else el.addEventListener(type, handler);
 }
 
-function update_list()
-{
+function removeEvent(el, type, handler) {
+    if (el.detachEvent) el.detachEvent('on' + type, handler);
+    else el.removeEventListener(type, handler);
+}
+
+function update_list() {
     console.log('updating list');
     var list = document.getElementById('config_list');
     var delme;
     delme = document.getElementsByClassName('config_list_item');
-    while (delme[0] !== undefined)  {
+    while (delme[0] !== undefined) {
         console.log('Deleting: ', delme[0]);
         delme[0].parentNode.removeChild(delme[0]);
         delme = document.getElementsByClassName('config_list_item');
     }
-    for (var dev in devices)
-    {
-//        console.log(devices[dev]);
+    for (var dev in devices) {
+        //        console.log(devices[dev]);
         var newelem = document.createElement('div');
         newelem.setAttribute('id', 'device_' + devices[dev].slave_id);
         newelem.innerHTML = get_title(devices[dev]);
@@ -113,50 +107,46 @@ function update_list()
     setup_click_list_item();
 }
 
-function parseConfigFile(contents)
-{
-  devices = [];
-  var text = contents.split('\n');
-  var reg = {};
-
-  reg.name = /^device(\d+)\.name.*"(.*)"/;
-  reg.protocol = /^device(\d+)\.protocol.*"(.*)"$/;
-  reg.slave_id = /^device(\d+)\.slave_id.*"(.*)"$/;
-  reg.address = /^device(\d+)\.address.*"(.*)"$/;
-  reg.IP_Port = /^device(\d+)\.IP_Port.*"(.*)"$/;
-  reg.RTU_Baud_Rate = /^device(\d+)\.RTU_Baud_Rate.*"(.*)"$/;
-  reg.RTU_Parity = /^device(\d+)\.RTU_Parity.*"(.*)"$/;
-  reg.RTU_Data_Bits = /^device(\d+)\.RTU_Data_Bits.*"(.*)"$/;
-  reg.RTU_Stop_Bits = /^device(\d+)\.RTU_Stop_Bits.*"(.*)"$/;
-  reg.Discrete_Inputs_Start = /^device(\d+)\.Discrete_Inputs_Start.*"(.*)"$/;
-  reg.Discrete_Inputs_Size = /^device(\d+)\.Discrete_Inputs_Size.*"(.*)"$/;
-  reg.Coils_Start = /^device(\d+)\.Coils_Start.*"(.*)"$/;
-  reg.Coils_Size = /^device(\d+)\.Coils_Size.*"(.*)"$/;
-  reg.Input_Registers_Start = /^device(\d+)\.Input_Registers_Start.*"(.*)"$/;
-  reg.Input_Registers_Size = /^device(\d+)\.Input_Registers_Size.*"(.*)"$/;
-  reg.Holding_Registers_Start = /^device(\d+)\.Holding_Registers_Start.*"(.*)"$/;
-  reg.Holding_Registers_Size = /^device(\d+)\.Holding_Registers_Size.*"(.*)"$/;
-    
-  for (var line in text)
-  {
-      var dev;
-    for (var param in reg) {
-      var result = reg[param].exec(text[line]);
-      if (result) {
-        /* 0 - full match
-         * 1 - device number
-         * 2 - param value
-         * (1*string) creates a number
-         */
-        dev = 1*result[1];
-        console.log(line, dev, param, result);
-        if (typeof(devices[dev]) !== 'object') {
-          devices[dev] = {};
+function parseConfigFile(contents) {
+    devices = [];
+    var text = contents.split('\n');
+    var reg = {};
+    reg.name = /^device(\d+)\.name.*"(.*)"/;
+    reg.protocol = /^device(\d+)\.protocol.*"(.*)"$/;
+    reg.slave_id = /^device(\d+)\.slave_id.*"(.*)"$/;
+    reg.address = /^device(\d+)\.address.*"(.*)"$/;
+    reg.IP_Port = /^device(\d+)\.IP_Port.*"(.*)"$/;
+    reg.RTU_Baud_Rate = /^device(\d+)\.RTU_Baud_Rate.*"(.*)"$/;
+    reg.RTU_Parity = /^device(\d+)\.RTU_Parity.*"(.*)"$/;
+    reg.RTU_Data_Bits = /^device(\d+)\.RTU_Data_Bits.*"(.*)"$/;
+    reg.RTU_Stop_Bits = /^device(\d+)\.RTU_Stop_Bits.*"(.*)"$/;
+    reg.Discrete_Inputs_Start = /^device(\d+)\.Discrete_Inputs_Start.*"(.*)"$/;
+    reg.Discrete_Inputs_Size = /^device(\d+)\.Discrete_Inputs_Size.*"(.*)"$/;
+    reg.Coils_Start = /^device(\d+)\.Coils_Start.*"(.*)"$/;
+    reg.Coils_Size = /^device(\d+)\.Coils_Size.*"(.*)"$/;
+    reg.Input_Registers_Start = /^device(\d+)\.Input_Registers_Start.*"(.*)"$/;
+    reg.Input_Registers_Size = /^device(\d+)\.Input_Registers_Size.*"(.*)"$/;
+    reg.Holding_Registers_Start = /^device(\d+)\.Holding_Registers_Start.*"(.*)"$/;
+    reg.Holding_Registers_Size = /^device(\d+)\.Holding_Registers_Size.*"(.*)"$/;
+    for (var line in text) {
+        var dev;
+        for (var param in reg) {
+            var result = reg[param].exec(text[line]);
+            if (result) {
+                /* 0 - full match
+                 * 1 - device number
+                 * 2 - param value
+                 * (1*string) creates a number
+                 */
+                dev = 1 * result[1];
+                console.log(line, dev, param, result);
+                if (typeof (devices[dev]) !== 'object') {
+                    devices[dev] = {};
+                }
+                devices[dev][param] = result[2];
+            }
         }
-        devices[dev][param] = result[2];
-      }
     }
-  }
     for (var dev in devices) {
         if (devices[dev].protocol === 'TCP') {
             devices[dev].RTU_Baud_Rate = 9600;
@@ -165,27 +155,25 @@ function parseConfigFile(contents)
             devices[dev].RTU_Stop_Bits = 1;
         }
     }
-  update_list();
-  update_preview();
+    update_list();
+    update_preview();
 }
 
 function readSingleFile(e) {
-  var file = e.target.files[0];
-  if (!file) {
-    return;
-  }
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var contents = e.target.result;
-    parseConfigFile(contents);
-  };
-  reader.readAsText(file);
+    var file = e.target.files[0];
+    if (!file) {
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var contents = e.target.result;
+        parseConfigFile(contents);
+    };
+    reader.readAsText(file);
 }
-
 document.getElementById('button_openFile').addEventListener('change', readSingleFile, false);
 
-function set_values(dev)
-{
+function set_values(dev) {
     document.getElementById('device-name').value = dev.name;
     document.getElementById('device-protocol').value = dev.protocol;
     document.getElementById('device-id').value = dev.slave_id;
@@ -206,25 +194,23 @@ function set_values(dev)
     update_protocol(document.getElementById('device-protocol').value);
 }
 
-function update_protocol(protocol)
-{
+function update_protocol(protocol) {
     console.log("Running update protocol.", protocol);
     for (var index = 0; index < elems.config_rtu.length; index++) {
         if (protocol === "TCP") {
             elems.config_rtu[index].setAttribute('disabled', true);
             elems.config_rtu[index].style.color = '#040';
-        } else {
+        }
+        else {
             elems.config_rtu[index].removeAttribute('disabled');
             elems.config_rtu[index].style.color = '#3f3';
         }
     }
 }
 
-function create_config()
-{
+function create_config() {
     var text = 'Num_Devices = "' + devices.length + '" \n';
-    for (var dev in devices)
-    {
+    for (var dev in devices) {
         var prefix = 'device' + dev;
         text += '\n# ------------\n';
         text += '#   DEVICE ' + dev + '\n';
@@ -239,7 +225,8 @@ function create_config()
             text += prefix + '.RTU_Parity = ""\n';
             text += prefix + '.RTU_Data_Bits = ""\n';
             text += prefix + '.RTU_Stop_Bits = ""\n';
-        } else {
+        }
+        else {
             text += prefix + '.RTU_Baud_Rate = "' + devices[dev].RTU_Baud_Rate + '"\n';
             text += prefix + '.RTU_Parity = "' + devices[dev].RTU_Parity + '"\n';
             text += prefix + '.RTU_Data_Bits = "' + devices[dev].RTU_Data_Bits + '"\n';
@@ -254,7 +241,7 @@ function create_config()
         text += prefix + '.Holding_Registers_Start = "' + devices[dev].Holding_Registers_Start + '"\n';
         text += prefix + '.Holding_Registers_Size = "' + devices[dev].Holding_Registers_Size + '"\n';
     }
-    return(text);
+    return (text);
 }
 
 function update_preview() {
@@ -270,14 +257,12 @@ function handler_config_values_input(e) {
     var selected = document.getElementsByClassName('config_list_item_selected')[0];
     var dev = get_dev(selected.textContent);
     var text;
-    if (document.getElementById('device-name').value !== devices[dev].name)
-    {
+    if (document.getElementById('device-name').value !== devices[dev].name) {
         devices[dev].name = document.getElementById('device-name').value;
         text = get_title(devices[dev]);
         selected.textContent = text;
     }
-    if (document.getElementById('device-id').value !== devices[dev].slave_id)
-    {
+    if (document.getElementById('device-id').value !== devices[dev].slave_id) {
         devices[dev].slave_id = document.getElementById('device-id').value;
         text = get_title(devices[dev]);
         selected.textContent = text;
@@ -297,16 +282,13 @@ function handler_config_values_input(e) {
     devices[dev].Input_Registers_Size = document.getElementById('device-input-registers-size').value;
     devices[dev].Holding_Registers_Start = document.getElementById('device-holding-registers-start').value;
     devices[dev].Holding_Registers_Size = document.getElementById('device-holding-registers-size').value;
-
     update_protocol(document.getElementById('device-protocol').value);
     update_preview();
 }
 for (var index = 0; index < elems.config_values_input.length; index++) {
     var element = elems.config_values_input.item(index);
-    if (element.attachEvent)
-        element.attachEvent('onchange', handler_config_values_input);
-    else
-        element.addEventListener('change', handler_config_values_input);
+    if (element.attachEvent) element.attachEvent('onchange', handler_config_values_input);
+    else element.addEventListener('change', handler_config_values_input);
 }
 
 // Item clicked
@@ -316,17 +298,16 @@ function handler_list_item_selected(e) {
     for (var index = 0; index < elements.length; index++) {
         removeClass(elements[index], 'config_list_item_selected');
     }
-    for (var dev in devices)
-    {
+    for (var dev in devices) {
         var compare = get_title(devices[dev]);
-        if (compare === text)
-        {
+        if (compare === text) {
             set_values(devices[dev]);
             addClass(e.srcElement, 'config_list_item_selected');
             break;
         }
     }
 }
+
 function setup_click_list_item() {
     var elements = document.getElementsByClassName('config_list_item');
     for (var index = 0; index < elements.length; index++) {
@@ -338,20 +319,15 @@ function setup_click_list_item() {
 function handler_button_download(e) {
     download("modbusdevice.cfg", create_config());
 }
-if (elems.button_download.attachEvent)
-    elems.button_download.attachEvent('onclick', handler_button_download);
-else
-    elems.button_download.addEventListener('click', handler_button_download);
+if (elems.button_download.attachEvent) elems.button_download.attachEvent('onclick', handler_button_download);
+else elems.button_download.addEventListener('click', handler_button_download);
 
 // New device button
-function handler_list_new(e)
-{
-  devices.push(instantiate_new());
-  console.log(devices);
-  update_list();
-  update_preview();
+function handler_list_new(e) {
+    devices.push(instantiate_new());
+    console.log(devices);
+    update_list();
+    update_preview();
 }
-if (elems.button_list_new.attachEvent) 
-    elems.button_list_new.attachEvent('onclick', handler_list_new);
-else 
-    elems.button_list_new.addEventListener('click', handler_list_new);
+if (elems.button_list_new.attachEvent) elems.button_list_new.attachEvent('onclick', handler_list_new);
+else elems.button_list_new.addEventListener('click', handler_list_new);
