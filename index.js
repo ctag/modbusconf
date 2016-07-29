@@ -4,6 +4,7 @@ var elems = {};
 
 // Global variable instantiation
 elems.button_download = document.getElementById('button_download');
+elems.button_openFile = document.getElementById('button_openFile');
 elems.button_list_new = document.getElementById('config_list_new');
 elems.config_values_input = document.getElementsByClassName('config_values_input');
 elems.config_rtu = document.getElementsByClassName('config_rtu');
@@ -66,18 +67,6 @@ function instantiate_new() {
     dev.Holding_Registers_Start = 0;
     dev.Holding_Registers_Size = 5;
     return dev;
-}
-
-// instigate file download
-function download(filename, text) {
-    console.log("Doing download");
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
 }
 
 function get_title(dev) {
@@ -166,20 +155,6 @@ function parseConfigFile(contents) {
     update_list();
     update_preview();
 }
-
-function readSingleFile(e) {
-    var file = e.target.files[0];
-    if (!file) {
-        return;
-    }
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        var contents = e.target.result;
-        parseConfigFile(contents);
-    };
-    reader.readAsText(file);
-}
-document.getElementById('button_openFile').addEventListener('change', readSingleFile, false);
 
 function set_values(dev) {
     document.getElementById('device-name').value = dev.name;
@@ -323,7 +298,42 @@ function setup_click_list_item() {
     }
 }
 
+// Upload button
+function readSingleFile(e) {
+    var file = e.target.files[0];
+    if (!file) {
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var contents = e.target.result;
+        parseConfigFile(contents);
+    };
+    reader.readAsText(file);
+}
+function handler_button_openFile(e) {
+    var element = document.createElement('input');
+    element.setAttribute('type', 'file');
+    element.setAttribute('id', 'temp_openFile');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    addEvent(element, 'change', readSingleFile);
+    element.click();
+    document.body.removeChild(element);
+}
+addEvent(elems.button_openFile, 'click', handler_button_openFile);
+
 // Download button
+function download(filename, text) {
+    console.log("Doing download");
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
 function handler_button_download(e) {
     download("modbusdevice.cfg", create_config());
 }
