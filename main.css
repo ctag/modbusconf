@@ -59,21 +59,9 @@ input {
     font-size: 14px;
 }
 
-textarea {
-    background: #111;
-    border: 1px solid #0B0;
-    color: #3f3;
-    font-family: 'Source Code Pro';
-    font-size: 14px;
-    height: 80%;
-    margin-left: 5%;
-    margin-top: 2%;
-    width: 90%;
-}
-
 .header {
     border-bottom: 1px solid #0a0;
-    height: 40px;
+    height: 34px;
     padding-top: 5px;
     text-align: center;
     width: 100%;
@@ -85,27 +73,41 @@ textarea {
     padding-top: 25px;
     padding-left: 25px;
     width: 100%;
+	vertical-align: top;
 }
 
 .list_wrapper {
     border: 1px solid #0B0;
     display: inline-block;
-    height: 90%;
-    overflow: auto;
-    width: 200px;
+	max-height: 90%;
+    overflow-y: auto;
+	overflow-x: hidden;
+	vertical-align: top;
 }
 
 .values_wrapper {
     border: 1px solid #0B0;
     display: inline-block;
-    height: 90%;
     min-width: 300px;
+	max-height: 90%;
     overflow: auto;
+	vertical-align: top;
+}
+
+.preview_wrapper {
+    min-width: 300px;
+	min-height: 20%;
+	max-height: 90%;
+    overflow-y: auto;
+    border: 1px solid #0B0;
+    display: inline-block;
+	vertical-align: top;
 }
 
 .config_value_box {
     border-bottom: 1px dashed #090;
-    text-align: right;
+	margin-bottom: 2px;
+	margin-top: 2px;
 }
 
 .config_values_input {
@@ -123,17 +125,11 @@ input {
     padding-top: 15px;
 }
 
-.preview_wrapper {
-    min-width: 300px;
-    height: 90%;
-    overflow-y: auto;
-    border: 1px solid #0B0;
-    display: inline-block;
-}
-
-.box {
+.values_box {
     border: 1px solid #0b0;
     margin: 5px;
+	padding-bottom: 2px;
+	text-align: right;
 }
 
 .active {
@@ -144,7 +140,7 @@ input {
     border: solid 1px #0a0;
     display: inline-block;
     margin: 2px;
-    padding: 4px;
+    padding: 2px;
 }
 
 .button:hover {
@@ -162,18 +158,14 @@ input {
     width: 188px;
 }
 
-.config_list_item_selected {
-    background: #600;
-}
-
-.config_list_button {
-    text-align: center;
-}
-
 .config_list_item:hover {
     color: #F66;
     /*border-color: #F66;*/
     cursor: pointer;
+}
+
+.config_list_button {
+    text-align: center;
 }
 
 .config_list_button:hover {
@@ -181,3 +173,8 @@ input {
     /*border-color: #F66;*/
     cursor: pointer;
 }
+
+.config_list_item_selected {
+    background: #600;
+}
+
