@@ -136,9 +136,10 @@ function parseConfigFile(contents)
   reg.Input_Registers_Size = /^device(\d+)\.Input_Registers_Size.*"(.*)"$/;
   reg.Holding_Registers_Start = /^device(\d+)\.Holding_Registers_Start.*"(.*)"$/;
   reg.Holding_Registers_Size = /^device(\d+)\.Holding_Registers_Size.*"(.*)"$/;
-
+    
   for (var line in text)
   {
+      var dev;
     for (var param in reg) {
       var result = reg[param].exec(text[line]);
       if (result) {
@@ -147,9 +148,8 @@ function parseConfigFile(contents)
          * 2 - param value
          * (1*string) creates a number
          */
-        var dev = 1*result[1];
+        dev = 1*result[1];
         console.log(line, dev, param, result);
-        console.log(typeof devices[dev]);
         if (typeof(devices[dev]) !== 'object') {
           devices[dev] = {};
         }
@@ -157,6 +157,14 @@ function parseConfigFile(contents)
       }
     }
   }
+    for (var dev in devices) {
+        if (devices[dev].protocol === 'TCP') {
+            devices[dev].RTU_Baud_Rate = 9600;
+            devices[dev].RTU_Parity = 'N';
+            devices[dev].RTU_Data_Bits = 8;
+            devices[dev].RTU_Stop_Bits = 1;
+        }
+    }
   update_list();
   update_preview();
 }
