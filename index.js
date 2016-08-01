@@ -14,27 +14,44 @@ elems.config_rtu = document.getElementsByClassName('config_rtu');
 //
 
 function hasClass(el, className) {
+	"use strict";
     return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
 }
 
 function addClass(el, className) {
-    if (el.classList) el.classList.add(className);
-    else if (!hasClass(el, className)) el.className += ' ' + className;
+	"use strict";
+    if (el.classList) {
+		el.classList.add(className);
+	} else if (!hasClass(el, className)) {
+		el.className += ' ' + className;
+	}
 }
 
 function removeClass(el, className) {
-    if (el.classList) el.classList.remove(className);
-    else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+	"use strict";
+    if (el.classList) {
+		el.classList.remove(className);
+	} else {
+		el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+	}
 }
 
 function addEvent(el, type, handler) {
-    if (el.attachEvent) el.attachEvent('on' + type, handler);
-    else el.addEventListener(type, handler);
+	"use strict";
+    if (el.attachEvent) {
+		el.attachEvent('on' + type, handler);
+	} else {
+		el.addEventListener(type, handler);
+	}
 }
 
 function removeEvent(el, type, handler) {
-    if (el.detachEvent) el.detachEvent('on' + type, handler);
-    else el.removeEventListener(type, handler);
+	"use strict";
+    if (el.detachEvent) {
+		el.detachEvent('on' + type, handler);
+	} else {
+		el.removeEventListener(type, handler);
+	}
 }
 
 //
@@ -43,13 +60,13 @@ function removeEvent(el, type, handler) {
 
 // Create a new device
 function instantiate_new() {
+	"use strict";
     var dev = {};
     dev.name = "New Device";
     dev.protocol = "TCP";
     if (devices.length) {
         dev.slave_id = devices.length;
-    }
-    else {
+    } else {
         dev.slave_id = 0;
     }
     dev.address = "192.168.23.1";
@@ -70,32 +87,45 @@ function instantiate_new() {
 }
 
 function get_title(dev) {
+	"use strict";
     var text = dev.slave_id + " - " + dev.name;
     return text;
 }
 
 function get_dev(text) {
-    for (var dev in devices) {
-        var compare = get_title(devices[dev]);
+	"use strict";
+	var dev, compare;
+    for (dev in devices) {
+        compare = get_title(devices[dev]);
         if (compare === text) {
             return dev;
         }
     }
 }
 
+function setup_click_list_item() {
+	"use strict";
+    var elements, index;
+	elements = document.getElementsByClassName('config_list_item');
+    for (index = 0; index < elements.length; index = index + 1) {
+        addEvent(elements[index], 'click', handler_list_item_selected);
+    }
+}
+
 function update_list() {
+	"use strict";
     console.log('updating list');
-    var list = document.getElementById('config_list');
-    var delme;
+    var list, delme, dev, newelem;
+	list = document.getElementById('config_list');
     delme = document.getElementsByClassName('config_list_item');
     while (delme[0] !== undefined) {
         console.log('Deleting: ', delme[0]);
         delme[0].parentNode.removeChild(delme[0]);
         delme = document.getElementsByClassName('config_list_item');
     }
-    for (var dev in devices) {
+    for (dev in devices) {
         //        console.log(devices[dev]);
-        var newelem = document.createElement('div');
+        newelem = document.createElement('div');
         newelem.setAttribute('id', 'device_' + devices[dev].slave_id);
         newelem.innerHTML = get_title(devices[dev]);
         addClass(newelem, 'config_list_item');
@@ -105,6 +135,7 @@ function update_list() {
 }
 
 function parseConfigFile(contents) {
+	"use strict";
     devices = [];
     var text = contents.split('\n');
     var reg = {};
@@ -157,6 +188,7 @@ function parseConfigFile(contents) {
 }
 
 function set_values(dev) {
+	"use strict";
     document.getElementById('device-name').value = dev.name;
     document.getElementById('device-protocol').value = dev.protocol;
     document.getElementById('device-id').value = dev.slave_id;
@@ -178,6 +210,7 @@ function set_values(dev) {
 }
 
 function update_protocol(protocol) {
+	"use strict";
     console.log("Running update protocol.", protocol);
     for (var index = 0; index < elems.config_rtu.length; index++) {
         if (protocol === "TCP") {
@@ -192,6 +225,7 @@ function update_protocol(protocol) {
 }
 
 function create_config() {
+	"use strict";
     var text = 'Num_Devices = "' + devices.length + '" \n';
     for (var dev in devices) {
         var prefix = 'device' + dev;
@@ -228,6 +262,7 @@ function create_config() {
 }
 
 function update_preview() {
+	"use strict";
     document.getElementById('config_preview').innerHTML = create_config().replace(/\n/g, '\n<br>');
 }
 
@@ -237,6 +272,7 @@ function update_preview() {
 
 // Param changed
 function handler_config_values_input(e) {
+	"use strict";
     var selected = document.getElementsByClassName('config_list_item_selected')[0];
     var dev = get_dev(selected.textContent);
     var text;
@@ -275,6 +311,7 @@ for (var index = 0; index < elems.config_values_input.length; index++) {
 
 // Item clicked
 function handler_list_item_selected(e) {
+	"use strict";
     var text = e.target.textContent;
     var elements = document.getElementsByClassName('config_list_item');
     for (var index = 0; index < elements.length; index++) {
@@ -290,15 +327,9 @@ function handler_list_item_selected(e) {
     }
 }
 
-function setup_click_list_item() {
-    var elements = document.getElementsByClassName('config_list_item');
-    for (var index = 0; index < elements.length; index++) {
-        addEvent(elements[index], 'click', handler_list_item_selected);
-    }
-}
-
 // Upload button
 function readSingleFile(e) {
+	"use strict";
     var file = e.target.files[0];
     if (!file) {
         return;
@@ -311,6 +342,7 @@ function readSingleFile(e) {
     reader.readAsText(file);
 }
 function handler_button_openFile(e) {
+	"use strict";
     var element = document.createElement('input');
     element.setAttribute('type', 'file');
     element.setAttribute('id', 'temp_openFile');
@@ -324,6 +356,7 @@ addEvent(elems.button_openFile, 'click', handler_button_openFile);
 
 // Download button
 function download(filename, text) {
+	"use strict";
     console.log("Doing download");
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -334,12 +367,14 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 function handler_button_download(e) {
+	"use strict";
     download("modbusdevice.cfg", create_config());
 }
 addEvent(elems.button_download, 'click', handler_button_download);
 
 // New device button
 function handler_list_new(e) {
+	"use strict";
     devices.push(instantiate_new());
     console.log(devices);
     update_list();
