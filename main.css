@@ -60,6 +60,7 @@ input {
     background: #111;
     border-color: #333;
     color: #3f3;
+	margin-right: 5px;
     font-family: 'Source Code Pro';
     font-size: 14px;
 }
@@ -152,13 +153,20 @@ input {
     color: #F33;
 }
 
+a.button {
+	text-decoration: none;
+}
+
+a.button,
 .button {
     border: solid 1px #0a0;
+	color: #3F3;
     display: inline-block;
     margin: 5px;
     padding: 2px;
 }
 
+a.button:hover,
 .button:hover {
     border-color: #F66;
     color: #F66;
