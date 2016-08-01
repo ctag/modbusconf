@@ -1,37 +1,42 @@
 /* main.css */
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
 html {
     font-family: 'Source Code Pro';
     font-size: 16px;
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    width: 100%;
 }
 
 body {
     background: #000;
+	border-collapse: collapse;
     color: #3F3;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
 }
 
 body,
 .button,
-.no_text_select {
-    /* Stop the text from highlighting */
-    -webkit-user-select: none;
-    /* Webkit */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE 10  */
-    /* Currently not supported in Opera but will be soon */
-    -o-user-select: none;
-    user-select: none;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
 }
 
 div::-webkit-scrollbar {
@@ -61,25 +66,28 @@ input {
 
 .header {
     border-bottom: 1px solid #0a0;
-    height: 34px;
-    padding-top: 5px;
     text-align: center;
     width: 100%;
 }
 
 .content_wrapper {
-    height: 90%;
-    overflow: auto;
-    padding-top: 25px;
-    padding-left: 25px;
-    width: 100%;
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+	flex: 1 auto;
 	vertical-align: top;
 }
 
 .list_wrapper {
     border: 1px solid #0B0;
     display: inline-block;
-	max-height: 90%;
+	margin-left: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	width: 200px;
+	min-width: 200px;
+	flex-shrink: 0;
     overflow-y: auto;
 	overflow-x: hidden;
 	vertical-align: top;
@@ -88,23 +96,44 @@ input {
 .values_wrapper {
     border: 1px solid #0B0;
     display: inline-block;
+	margin-left: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
     min-width: 300px;
-	max-height: 90%;
+	max-height: 100%;
     overflow: auto;
 	vertical-align: top;
 }
 
+.values_box {
+    border: 1px solid #0b0;
+    margin: 5px;
+	padding-bottom: 2px;
+	text-align: right;
+}
+
+.title_box {
+    color: #fff;
+    text-align: center;
+    padding-top: 15px;
+}
+
 .preview_wrapper {
+	margin-left: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-right: 25px;
     min-width: 300px;
-	min-height: 20%;
-	max-height: 90%;
+	min-height: 200px;
+	max-height: 95%;
+	flex: 1 auto;
     overflow-y: auto;
     border: 1px solid #0B0;
     display: inline-block;
 	vertical-align: top;
 }
 
-.config_value_box {
+.config_value_seperator {
     border-bottom: 1px dashed #090;
 	margin-bottom: 2px;
 	margin-top: 2px;
@@ -119,19 +148,6 @@ input {
     margin-top: 2px;
 }
 
-.title_box {
-    color: #fff;
-    text-align: center;
-    padding-top: 15px;
-}
-
-.values_box {
-    border: 1px solid #0b0;
-    margin: 5px;
-	padding-bottom: 2px;
-	text-align: right;
-}
-
 .active {
     color: #F33;
 }
@@ -139,7 +155,7 @@ input {
 .button {
     border: solid 1px #0a0;
     display: inline-block;
-    margin: 2px;
+    margin: 5px;
     padding: 2px;
 }
 
@@ -154,13 +170,11 @@ input {
     background: #030;
     margin: 2px;
     padding: 4px;
-    /*border: solid 1px #0a0;*/
     width: 188px;
 }
 
 .config_list_item:hover {
     color: #F66;
-    /*border-color: #F66;*/
     cursor: pointer;
 }
 
@@ -170,7 +184,6 @@ input {
 
 .config_list_button:hover {
     color: #F66;
-    /*border-color: #F66;*/
     cursor: pointer;
 }
 
