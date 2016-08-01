@@ -1,6 +1,9 @@
 # modbusconf
-A GUI configuration file generator for OpenPLC
+A GUI ModBus configuration file generator for OpenPLC
 
+### Web Version
+
+This program has a webpage version that makes editing config files more accessible. View [here](https://ctag.github.io/modbusconf/).
 
 ### To Do
 
