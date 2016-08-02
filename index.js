@@ -114,12 +114,11 @@ function setup_click_list_item() {
 
 function update_list() {
 	"use strict";
-    console.log('updating list');
     var list, delme, dev, newelem;
 	list = document.getElementById('config_list');
     delme = document.getElementsByClassName('config_list_item');
     while (delme[0] !== undefined) {
-        console.log('Deleting: ', delme[0]);
+//        console.log('Deleting: ', delme[0]);
         delme[0].parentNode.removeChild(delme[0]);
         delme = document.getElementsByClassName('config_list_item');
     }
@@ -167,7 +166,7 @@ function parseConfigFile(contents) {
                  * (1*string) creates a number
                  */
                 dev = 1 * result[1];
-                console.log(line, dev, param, result);
+//                console.log(line, dev, param, result);
                 if (typeof (devices[dev]) !== 'object') {
                     devices[dev] = {};
                 }
@@ -211,7 +210,7 @@ function set_values(dev) {
 
 function update_protocol(protocol) {
 	"use strict";
-    console.log("Running update protocol.", protocol);
+//    console.log("Running update protocol.", protocol);
     for (var index = 0; index < elems.config_rtu.length; index++) {
         if (protocol === "TCP") {
             elems.config_rtu[index].setAttribute('disabled', true);
@@ -357,7 +356,6 @@ addEvent(elems.button_openFile, 'click', handler_button_openFile);
 // Download button
 function download(filename, text) {
 	"use strict";
-    console.log("Doing download");
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
@@ -376,7 +374,7 @@ addEvent(elems.button_download, 'click', handler_button_download);
 function handler_list_new(e) {
 	"use strict";
     devices.push(instantiate_new());
-    console.log(devices);
+//    console.log(devices);
     update_list();
     update_preview();
 }
