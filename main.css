@@ -65,6 +65,15 @@ input {
     font-size: 14px;
 }
 
+select {
+	margin-left: 4px;
+}
+
+input {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
 .header {
     border-bottom: 1px solid #0a0;
     text-align: center;
@@ -148,11 +157,6 @@ input {
 
 .config_values_input {
     width: 7em;
-}
-
-input {
-    margin-bottom: 2px;
-    margin-top: 2px;
 }
 
 .active {
