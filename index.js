@@ -103,6 +103,10 @@ function get_dev(text) {
     }
 }
 
+function get_elem(dev) {
+	//
+}
+
 function setup_click_list_item() {
 	"use strict";
     var elements, index;
@@ -123,7 +127,7 @@ function update_list() {
         delme = document.getElementsByClassName('config_list_item');
     }
     for (dev in devices) {
-        //        console.log(devices[dev]);
+//        console.log(devices[dev]);
         newelem = document.createElement('div');
         newelem.setAttribute('id', 'device_' + devices[dev].slave_id);
         newelem.innerHTML = get_title(devices[dev]);
@@ -373,9 +377,17 @@ addEvent(elems.button_download, 'click', handler_button_download);
 // New device button
 function handler_list_new(e) {
 	"use strict";
+	var elemList, index;
     devices.push(instantiate_new());
 //    console.log(devices);
     update_list();
     update_preview();
+	// Jump to the newly created element
+	elemList = document.getElementsByClassName('config_list_item');
+	for (index = 0; index < elemList.length; index = index +1) {
+		if (elemList[index].textContent == get_title(devices[devices.length - 1])) {
+			elemList[index].click();
+		}
+	}
 }
 addEvent(elems.button_list_new, 'click', handler_list_new);
