@@ -188,6 +188,7 @@ function parseConfigFile(contents) {
     }
     update_list();
     update_preview();
+	select_last();
 }
 
 function set_values(dev) {
@@ -267,6 +268,17 @@ function create_config() {
 function update_preview() {
 	"use strict";
     document.getElementById('config_preview').innerHTML = create_config().replace(/\n/g, '\n<br>');
+}
+
+function select_last() {
+	"use strict";
+	var elemList, index;
+	elemList = document.getElementsByClassName('config_list_item');
+	for (index = 0; index < elemList.length; index = index +1) {
+		if (elemList[index].textContent == get_title(devices[devices.length - 1])) {
+			elemList[index].click();
+		}
+	}
 }
 
 //
@@ -377,17 +389,11 @@ addEvent(elems.button_download, 'click', handler_button_download);
 // New device button
 function handler_list_new(e) {
 	"use strict";
-	var elemList, index;
     devices.push(instantiate_new());
 //    console.log(devices);
     update_list();
     update_preview();
 	// Jump to the newly created element
-	elemList = document.getElementsByClassName('config_list_item');
-	for (index = 0; index < elemList.length; index = index +1) {
-		if (elemList[index].textContent == get_title(devices[devices.length - 1])) {
-			elemList[index].click();
-		}
-	}
+	select_last();
 }
 addEvent(elems.button_list_new, 'click', handler_list_new);
