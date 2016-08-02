@@ -19,7 +19,7 @@ html {
 body {
     background: #000;
 	border-collapse: collapse;
-    color: #3F3;
+    color: #5F5;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -59,7 +59,7 @@ select,
 input {
     background: #111;
     border-color: #333;
-    color: #3f3;
+    color: #5F5;
 	margin-right: 5px;
     font-family: 'Source Code Pro';
     font-size: 14px;
@@ -101,7 +101,7 @@ input {
 	margin-left: 25px;
 	margin-top: 25px;
 	margin-bottom: 25px;
-    min-width: 300px;
+    min-width: 23em;
     overflow: auto;
 	vertical-align: top;
 }
@@ -129,6 +129,7 @@ input {
 	margin-right: 25px;
     min-width: 300px;
 	min-height: 200px;
+	padding: 4px;
 	flex: 1 auto;
     overflow-y: auto;
     border: 1px solid #0B0;
@@ -146,7 +147,7 @@ input {
 }
 
 .config_values_input {
-    width: 10em;
+    width: 7em;
 }
 
 input {
@@ -165,7 +166,7 @@ a.button {
 a.button,
 .button {
     border: solid 1px #0a0;
-	color: #3F3;
+	color: #5F5;
     display: inline-block;
     margin: 5px;
     padding: 2px;

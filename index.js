@@ -219,7 +219,7 @@ function update_protocol(protocol) {
         }
         else {
             elems.config_rtu[index].removeAttribute('disabled');
-            elems.config_rtu[index].style.color = '#3f3';
+            elems.config_rtu[index].style.color = '#5F5';
         }
     }
 }
