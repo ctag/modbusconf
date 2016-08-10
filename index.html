@@ -25,29 +25,29 @@
         <div id="config_values" class="values_wrapper">
             <div class="title_box">Device Configuration</div>
             <div class="values_box">
-				<div class="config_value_wrapper">
+				<div class="config_value_wrapper" title="The name for the device. You can insert anything here. Ex: 'My Modbus Slave Device'">
                 	Name: <input id="device-name" class="config_values_input" type="text" value="NA">
 				</div>
-				<div class="config_value_wrapper">
+				<div class="config_value_wrapper" title="The protocol your device accepts. It can be 'TCP' or 'RTU'">
                     Protocol:
                     <select name="device-protocol" id="device-protocol" class="config_values_input">
                         <option value="TCP">TCP</option>
                         <option value="RTU">RTU</option>
                     </select>
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Your modbus device Slave ID">
                     Slave ID: <input id="device-id" class="config_values_input" type="number" value="0">
                 </div>
-				<div class="config_value_wrapper">
+				<div class="config_value_wrapper" title="The address for your device. In case of TCP, this is the IP Address. In case of RTU, this is the Serial COM port your PC will use to communicate with your device. It is usually something like /dev/ttyS0 or /dev/ttyS1... On Windows, substitute your COM number with /dev/ttyS(COM number - 1)">
                     Address: <input id="device-address" class="config_values_input config_tcp" type="text" value="0.0.0.0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="In case of Modbus TCP, this is the TCP/IP Port number. If you choose Modbus RTU protocol you must leave it blank">
                     IP Port: <input id="device-port" class="config_values_input config_tcp" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="If you choose Modbus RTU, this is the Baud Rate of your slave device">
                     RTU Baud Rate: <input id="device-rtu-baud" class="config_values_input config_rtu" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="This is the Parity for your Modbus RTU device.">
                     RTU Parity:
                     <select name="device-rtu-parity" id="device-rtu-parity" class="config_values_input config_rtu">
                         <option value="N">None</option>
@@ -55,37 +55,37 @@
                         <option value="O">Odd</option>
                     </select>
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="The number of bits of data for your Modbus RTU device">
                     RTU Data Bits: <input id="device-rtu-data" class="config_values_input config_rtu" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Specifies the bits of stop for your Modbus RTU device">
                     RTU Stop Bits: <input id="device-rtu-stop" class="config_values_input config_rtu" type="number" value="0">
             	</div>
 			</div>
             <div class="title_box">I/O Configuration</div>
             <div class="values_box">
-				<div class="config_value_wrapper">
+				<div class="config_value_wrapper" title="Defines what is the start address for the read discrete inputs request. Unless you want to start reading your discrete inputs after an offset, you should leave this as '0'.">
                     Discrete Inputs Start: <input id="device-discrete-input-start" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines how many discrete inputs will be read. For example, if your device has 12 discrete inputs and you defined Start to be zero, if you insert '3' here, only the first 3 inputs will be read. If you insert '12', all the 12 inputs will be read. Inserting a number bigger than the maximum inputs you have available in your device may cause your slave device to malfunction.">
                     Discrete Inputs Size: <input id="device-discrete-input-size" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines what is the start address for the write coils request. Unless you want to start writing your digital output after an offset, you should leave this as '0'.">
                     Coils Start: <input id="device-coils-start" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines how many coils (digital outputs) will be written. For example, if your device has 12 coils and you defined Start to be zero, if you insert '3' here, only the first 3 coils will be written. If you insert '12', all the 12 coils will be written. Inserting a number bigger than the maximum coils you have available in your device may cause your slave device to malfunction.">
                     Coils Size: <input id="device-coils-size" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines what is the start address for the read input registers request. Unless you want to start reading your analog inputs after an offset, you should leave this as '0'.">
                     Input Registers Start: <input id="device-input-registers-start" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines how many analog inputs will be read. For example, if your device has 12 analog inputs and you defined Start to be zero, if you insert '3' here, only the first 3 analog inputs will be read. If you insert '12', all the 12 analog inputs will be read. Inserting a number bigger than the maximum analog inputs you have available in your device may cause your slave device to malfunction.">
                     Input Registers Size: <input id="device-input-registers-size" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines what is the start address for the write holding registers request. Unless you want to start writing your analog output after an offset, you should leave this as '0'.">
                     Holding Registers Start: <input id="device-holding-registers-start" class="config_values_input" type="number" value="0">
 				</div>
-                <div class="config_value_wrapper">
+                <div class="config_value_wrapper" title="Defines how many holding registers (analog outputs) will be written. For example, if your device has 12 analog outputs and you defined Start to be zero, if you insert '3' here, only the first 3 analog outputs will be written. If you insert '12', all the 12 analog outputs will be written. Inserting a number bigger than the maximum analog outputs you have available in your device may cause your slave device to malfunction.">
                     Holding Registers Size: <input id="device-holding-registers-size" class="config_values_input" type="number" value="0">
 				</div>
             </div>
