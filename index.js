@@ -8,6 +8,7 @@ elems.button_openFile = document.getElementById('button_openFile');
 elems.button_list_new = document.getElementById('config_list_new');
 elems.config_values_input = document.getElementsByClassName('config_values_input');
 elems.config_rtu = document.getElementsByClassName('config_rtu');
+elems.config_tcp = document.getElementsByClassName('config_tcp');
 
 //
 // Helper functions
@@ -224,6 +225,16 @@ function update_protocol(protocol) {
         else {
             elems.config_rtu[index].removeAttribute('disabled');
             elems.config_rtu[index].style.color = '#5F5';
+        }
+    }
+	for (var index = 0; index < elems.config_tcp.length; index++) {
+        if (protocol === "TCP") {
+			elems.config_tcp[index].removeAttribute('disabled');
+            elems.config_tcp[index].style.color = '#5F5';
+        }
+        else {
+			elems.config_tcp[index].setAttribute('disabled', true);
+            elems.config_tcp[index].style.color = '#040';
         }
     }
 }
