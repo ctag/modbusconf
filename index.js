@@ -77,13 +77,13 @@ function instantiate_new() {
     dev.RTU_Data_Bits = 8;
     dev.RTU_Stop_Bits = 1;
     dev.Discrete_Inputs_Start = 0;
-    dev.Discrete_Inputs_Size = 8;
+    dev.Discrete_Inputs_Size = 0;
     dev.Coils_Start = 0;
-    dev.Coils_Size = 4;
+    dev.Coils_Size = 0;
     dev.Input_Registers_Start = 0;
-    dev.Input_Registers_Size = 10;
+    dev.Input_Registers_Size = 0;
     dev.Holding_Registers_Start = 0;
-    dev.Holding_Registers_Size = 5;
+    dev.Holding_Registers_Size = 0;
     return dev;
 }
 
