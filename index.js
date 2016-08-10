@@ -251,15 +251,17 @@ function create_config() {
         text += prefix + '.name = "' + devices[dev].name + '"\n';
         text += prefix + '.protocol = "' + devices[dev].protocol + '"\n';
         text += prefix + '.slave_id = "' + devices[dev].slave_id + '"\n';
-        text += prefix + '.address = "' + devices[dev].address + '"\n';
-        text += prefix + '.IP_Port = "' + devices[dev].IP_Port + '"\n';
         if (devices[dev].protocol === "TCP") {
+			text += prefix + '.address = "' + devices[dev].address + '"\n';
+        	text += prefix + '.IP_Port = "' + devices[dev].IP_Port + '"\n';
             text += prefix + '.RTU_Baud_Rate = ""\n';
             text += prefix + '.RTU_Parity = ""\n';
             text += prefix + '.RTU_Data_Bits = ""\n';
             text += prefix + '.RTU_Stop_Bits = ""\n';
         }
         else {
+			text += prefix + '.address = ""\n';
+        	text += prefix + '.IP_Port = ""\n';
             text += prefix + '.RTU_Baud_Rate = "' + devices[dev].RTU_Baud_Rate + '"\n';
             text += prefix + '.RTU_Parity = "' + devices[dev].RTU_Parity + '"\n';
             text += prefix + '.RTU_Data_Bits = "' + devices[dev].RTU_Data_Bits + '"\n';
