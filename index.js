@@ -6,6 +6,7 @@ var elems = {};
 elems.button_download = document.getElementById('button_download');
 elems.button_openFile = document.getElementById('button_openFile');
 elems.button_list_new = document.getElementById('config_list_new');
+elems.button_list_del = document.getElementById('config_list_del');
 elems.config_values_input = document.getElementsByClassName('config_values_input');
 elems.config_rtu = document.getElementsByClassName('config_rtu');
 elems.config_tcp = document.getElementsByClassName('config_tcp');
@@ -120,7 +121,7 @@ function setup_click_list_item() {
 function update_list() {
 	"use strict";
     var list, delme, dev, newelem;
-	list = document.getElementById('config_list');
+	list = document.getElementById('config_list_items');
     delme = document.getElementsByClassName('config_list_item');
     while (delme[0] !== undefined) {
 //        console.log('Deleting: ', delme[0]);
@@ -408,3 +409,17 @@ function handler_list_new(e) {
 	select_last();
 }
 addEvent(elems.button_list_new, 'click', handler_list_new);
+
+// Del device button
+function handler_list_del(e) {
+	"use strict";
+	var selected = document.getElementsByClassName('config_list_item_selected')[0];
+    var dev = get_dev(selected.textContent);
+    console.log(dev);
+    devices.splice(dev, 1);
+    update_list();
+    update_preview();
+	// Jump to the newly created element
+	select_last();
+}
+addEvent(elems.button_list_del, 'click', handler_list_del);

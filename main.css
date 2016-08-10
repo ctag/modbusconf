@@ -93,6 +93,7 @@ input {
     border: 1px solid #0B0;
     display: flex;
 	flex-direction: column;
+	align-content: stretch;
 	margin-left: 25px;
 	margin-top: 25px;
 	margin-bottom: 25px;
@@ -100,7 +101,6 @@ input {
 	min-width: 200px;
     overflow-y: auto;
 	overflow-x: hidden;
-	vertical-align: top;
 }
 
 .values_wrapper {
@@ -189,6 +189,17 @@ a.button:hover,
     margin: 2px;
     padding: 4px;
     width: 188px;
+	flex: 0 0;
+}
+
+.list_items_wrapper {
+	flex: 1 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#button_list_del {
+	align-self: flex-end;
 }
 
 .config_list_item:hover {
