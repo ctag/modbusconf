@@ -67,7 +67,7 @@ function instantiate_new() {
     dev.name = "New Device";
     dev.protocol = "TCP";
     if (devices.length) {
-        dev.slave_id = devices.length;
+        dev.slave_id = devices[devices.length - 1].slave_id + 1;
     } else {
         dev.slave_id = 0;
     }
