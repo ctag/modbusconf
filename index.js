@@ -204,8 +204,8 @@ function set_values(dev) {
     document.getElementById('device-rtu-parity').value = dev.RTU_Parity;
     document.getElementById('device-rtu-data').value = dev.RTU_Data_Bits;
     document.getElementById('device-rtu-stop').value = dev.RTU_Stop_Bits;
-    document.getElementById('device-input-registers-start').value = dev.Input_Registers_Start;
-    document.getElementById('device-input-registers-size').value = dev.Input_Registers_Size;
+    document.getElementById('device-discrete-input-start').value = dev.Discrete_Inputs_Start;
+    document.getElementById('device-discrete-input-size').value = dev.Discrete_Inputs_Size;
     document.getElementById('device-coils-start').value = dev.Coils_Start;
     document.getElementById('device-coils-size').value = dev.Coils_Size;
     document.getElementById('device-input-registers-start').value = dev.Input_Registers_Start;
@@ -322,8 +322,8 @@ function handler_config_values_input(e) {
     devices[dev].RTU_Parity = document.getElementById('device-rtu-parity').value;
     devices[dev].RTU_Data_Bits = document.getElementById('device-rtu-data').value;
     devices[dev].RTU_Stop_Bits = document.getElementById('device-rtu-stop').value;
-    devices[dev].Input_Registers_Start = document.getElementById('device-input-registers-start').value;
-    devices[dev].Input_Registers_Size = document.getElementById('device-input-registers-size').value;
+    devices[dev].Discrete_Inputs_Start = document.getElementById('device-discrete-input-start').value;
+    devices[dev].Discrete_Inputs_Size = document.getElementById('device-discrete-input-size').value;
     devices[dev].Coils_Start = document.getElementById('device-coils-start').value;
     devices[dev].Coils_Size = document.getElementById('device-coils-size').value;
     devices[dev].Input_Registers_Start = document.getElementById('device-input-registers-start').value;
